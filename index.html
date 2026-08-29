@@ -1,1 +1,1202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>CYBERGUARD AI | AI-Powered Cyber Fraud Protection</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@500;700&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        /* --- CSS VARIABLES & THEMING --- */
+        :root {
+            /* Deep Space/Cyber Theme */
+            --bg-base: #060913;
+            --bg-surface: #0f1629;
+            --bg-glass: rgba(15, 22, 41, 0.65);
+            --bg-glass-hover: rgba(22, 32, 59, 0.8);
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --border-light: rgba(255, 255, 255, 0.08);
+            --border-accent: rgba(56, 189, 248, 0.3);
+            --primary: #3b82f6;
+            --primary-glow: rgba(59, 130, 246, 0.5);
+            --secondary: #06b6d4;
+            --accent: #8b5cf6;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+            --info: #0ea5e9;
+            --shadow-glass: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+            --shadow-neon: 0 0 20px var(--primary-glow);
+            --radius-md: 12px;
+            --radius-lg: 20px;
+            --radius-xl: 24px;
+            --font-main: 'Inter', sans-serif;
+            --font-display: 'Space Grotesk', sans-serif;
+            --font-mono: 'Fira Code', monospace;
+            --transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        [data-theme="light"] {
+            --bg-base: #f1f5f9;
+            --bg-surface: #ffffff;
+            --bg-glass: rgba(255, 255, 255, 0.7);
+            --bg-glass-hover: rgba(248, 250, 252, 0.9);
+            --text-main: #0f172a;
+            --text-muted: #475569;
+            --border-light: rgba(0, 0, 0, 0.08);
+            --border-accent: rgba(59, 130, 246, 0.3);
+            --shadow-glass: 0 8px 32px 0 rgba(0, 0, 0, 0.05);
+        }
+        /* --- RESET & GLOBAL --- */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: var(--font-main); background-color: var(--bg-base); color: var(--text-main); line-height: 1.6; overflow-x: hidden; transition: var(--transition); }
+        /* Animated Background Canvas */
+        #cyber-bg { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: -1; opacity: 0.6; pointer-events: none; }
+        .container { width: 100%; max-width: 1300px; margin: 0 auto; padding: 0 1.5rem; }
+        h1, h2, h3, h4, h5 { font-family: var(--font-display); line-height: 1.2; }
+        a { color: var(--secondary); text-decoration: none; transition: var(--transition); }
+        a:hover { color: var(--primary); }
+        /* --- GLASSMORPHISM COMPONENTS --- */
+        .glass-panel { background: var(--bg-glass); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border: 1px solid var(--border-light); border-radius: var(--radius-lg); box-shadow: var(--shadow-glass); transition: var(--transition); position: relative; overflow: hidden; }
+        .glass-panel::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent); }
+        .glass-panel:hover { border-color: var(--border-accent); box-shadow: 0 8px 32px 0 rgba(0,0,0,0.4), 0 0 15px rgba(56, 189, 248, 0.1); }
+        /* --- BUTTONS --- */
+        .btn { display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem; padding: 0.8rem 1.5rem; border-radius: var(--radius-md); font-family: var(--font-display); font-weight: 600; font-size: 0.95rem; letter-spacing: 0.5px; cursor: pointer; border: none; transition: var(--transition); position: relative; overflow: hidden; }
+        .btn-primary { background: linear-gradient(135deg, var(--primary), var(--secondary)); color: white; box-shadow: var(--shadow-neon); }
+        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 0 25px rgba(6, 182, 212, 0.6); }
+        .btn-outline { background: rgba(255,255,255,0.03); border: 1px solid var(--border-light); color: var(--text-main); backdrop-filter: blur(5px); }
+        .btn-outline:hover { background: rgba(255,255,255,0.1); border-color: var(--text-main); transform: translateY(-2px); }
+        .btn-danger { background: rgba(239, 68, 68, 0.1); color: var(--danger); border: 1px solid var(--danger); }
+        .btn-danger:hover { background: var(--danger); color: white; }
+        /* --- FORMS --- */
+        .form-group { margin-bottom: 1.5rem; }
+        .form-label { display: block; margin-bottom: 0.5rem; font-size: 0.85rem; color: var(--text-muted); font-weight: 500; }
+        .form-control { width: 100%; padding: 1rem; background: rgba(0, 0, 0, 0.3); border: 1px solid var(--border-light); border-radius: var(--radius-md); color: var(--text-main); font-family: var(--font-main); transition: var(--transition); }
+        [data-theme="light"] .form-control { background: rgba(255,255,255,0.8); }
+        .form-control:focus { outline: none; border-color: var(--primary); box-shadow: 0 0 0 3px rgba(59,130,246,0.2); background: rgba(0,0,0,0.5); }
+        textarea.form-control { resize: vertical; min-height: 120px; }
+        .badge { padding: 0.25rem 0.75rem; border-radius: 20px; font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; }
+        .badge-danger { background: rgba(239, 68, 68, 0.15); color: #fca5a5; border: 1px solid var(--danger); }
+        .badge-warning { background: rgba(245, 158, 11, 0.15); color: #fcd34d; border: 1px solid var(--warning); }
+        .badge-success { background: rgba(16, 185, 129, 0.15); color: #6ee7b7; border: 1px solid var(--success); }
+        .badge-info { background: rgba(14, 165, 233, 0.15); color: #7dd3fc; border: 1px solid var(--info); }
+        /* --- NAVBAR --- */
+        nav { position: fixed; top: 0; width: 100%; z-index: 1000; background: rgba(6, 9, 19, 0.8); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border-bottom: 1px solid var(--border-light); padding: 1rem 0; transition: var(--transition); }
+        .nav-container { display: flex; justify-content: space-between; align-items: center; }
+        .logo { display: flex; align-items: center; gap: 0.75rem; font-family: var(--font-display); font-size: 1.5rem; font-weight: 700; color: var(--text-main); cursor: pointer; letter-spacing: -0.5px; }
+        .logo-shield { width: 36px; height: 36px; background: linear-gradient(135deg, var(--primary), var(--secondary)); border-radius: 10px; display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; box-shadow: var(--shadow-neon); }
+        .nav-links { display: flex; gap: 1.5rem; align-items: center; list-style: none; }
+        .nav-link { color: var(--text-muted); font-size: 0.9rem; font-weight: 500; cursor: pointer; padding: 0.5rem; transition: var(--transition); }
+        .nav-link:hover, .nav-link.active { color: var(--primary); }
+        .mobile-menu-btn { display: none; font-size: 1.5rem; background: none; border: none; color: var(--text-main); cursor: pointer; }
+        /* --- SPA VIEW LOGIC --- */
+        .view-section { display: none; padding-top: 100px; padding-bottom: 4rem; min-height: calc(100vh - 100px); animation: fadeUp 0.5s ease forwards; }
+        .view-section.active { display: block; }
+        @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        .section-header { text-align: center; margin-bottom: 4rem; }
+        .section-title { font-size: 3rem; background: linear-gradient(to right, #fff, var(--text-muted)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 1rem; }
+        .section-desc { color: var(--text-muted); max-width: 600px; margin: 0 auto; font-size: 1.1rem; }
+        /* --- HERO SECTION --- */
+        .hero { position: relative; min-height: 100vh; display: flex; align-items: center; overflow: hidden; padding-top: 80px; }
+        .hero-content { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
+        .hero-text h1 { font-size: 4.5rem; font-weight: 700; line-height: 1.1; margin-bottom: 1.5rem; background: linear-gradient(to right, #fff, var(--primary), var(--secondary)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .hero-text p { font-size: 1.25rem; color: var(--text-muted); margin-bottom: 2.5rem; max-width: 90%; }
+        .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
+        .status-pill { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.5rem 1rem; background: rgba(16, 185, 129, 0.1); border: 1px solid rgba(16, 185, 129, 0.3); border-radius: 50px; font-family: var(--font-mono); font-size: 0.85rem; color: var(--success); margin-bottom: 2rem; }
+        .status-dot { width: 8px; height: 8px; background: var(--success); border-radius: 50%; box-shadow: 0 0 10px var(--success); animation: pulse 2s infinite; }
+        @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7); } 70% { box-shadow: 0 0 0 10px rgba(16, 185, 129, 0); } 100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); } }
+        /* 3D Visual Area */
+        .hero-visual { position: relative; height: 500px; display: flex; align-items: center; justify-content: center; perspective: 1000px; }
+        .shield-container { width: 300px; height: 350px; position: relative; transform-style: preserve-3d; transition: transform 0.1s ease-out; }
+        .shield-layer { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-size: contain; background-repeat: no-repeat; background-position: center; }
+        .shield-base { filter: drop-shadow(0 0 30px rgba(59,130,246,0.5)); }
+        .shield-core { transform: translateZ(30px); opacity: 0.8; animation: corePulse 4s infinite alternate; }
+        .shield-ring { transform: translateZ(60px); border: 2px solid var(--secondary); border-radius: 50%; width: 120%; height: 100%; left: -10%; top: 0; animation: spin 20s linear infinite; opacity: 0.3; }
+        @keyframes spin { 100% { transform: translateZ(60px) rotate(360deg); } }
+        @keyframes corePulse { 0% { filter: hue-rotate(0deg) brightness(1); } 100% { filter: hue-rotate(30deg) brightness(1.5); } }
+        .floating-indicator { position: absolute; background: var(--bg-glass); backdrop-filter: blur(10px); border: 1px solid var(--border-light); padding: 0.75rem 1.25rem; border-radius: var(--radius-md); font-family: var(--font-mono); font-size: 0.8rem; box-shadow: var(--shadow-glass); display: flex; flex-direction: column; gap: 0.25rem; }
+        .ind-1 { top: 10%; right: -10%; transform: translateZ(40px); animation: float 6s ease-in-out infinite; }
+        .ind-2 { bottom: 20%; left: -20%; transform: translateZ(50px); animation: float 5s ease-in-out infinite reverse; }
+        @keyframes float { 0%, 100% { transform: translateY(0) translateZ(40px); } 50% { transform: translateY(-20px) translateZ(40px); } }
+        /* --- SCANNER SECTION --- */
+        .scanner-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
+        .scanner-tabs { display: flex; gap: 1rem; border-bottom: 1px solid var(--border-light); padding-bottom: 1rem; margin-bottom: 2rem; overflow-x: auto; }
+        .scan-tab-btn { background: none; border: none; color: var(--text-muted); font-size: 1rem; font-weight: 500; cursor: pointer; padding: 0.5rem 1rem; border-radius: var(--radius-md); transition: var(--transition); white-space: nowrap; }
+        .scan-tab-btn.active { background: rgba(59, 130, 246, 0.15); color: var(--primary); }
+        .scan-content { display: none; }
+        .scan-content.active { display: block; animation: fadeUp 0.3s ease forwards; }
+        .analysis-box { background: rgba(0,0,0,0.4); border-radius: var(--radius-md); padding: 2rem; min-height: 400px; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; border: 1px solid var(--border-light); position: relative; }
+        .risk-meter { width: 200px; height: 100px; position: relative; overflow: hidden; margin: 0 auto 2rem; }
+        .risk-meter-bg { position: absolute; top: 0; left: 0; width: 200px; height: 200px; border-radius: 50%; border: 20px solid rgba(255,255,255,0.05); }
+        .risk-meter-fill { position: absolute; top: 0; left: 0; width: 200px; height: 200px; border-radius: 50%; border: 20px solid transparent; border-top-color: var(--success); border-right-color: var(--success); transform: rotate(-45deg); transition: transform 1.5s cubic-bezier(0.4, 0, 0.2, 1); }
+        .risk-score-display { position: absolute; bottom: 0; width: 100%; text-align: center; font-size: 2rem; font-family: var(--font-display); font-weight: 700; }
+        .indicators-list { width: 100%; text-align: left; margin-top: 2rem; }
+        .ind-item { background: rgba(255,255,255,0.03); padding: 1rem; border-radius: 8px; margin-bottom: 0.5rem; display: flex; align-items: flex-start; gap: 1rem; border-left: 3px solid var(--text-muted); }
+        /* --- DASHBOARD --- */
+        .dash-stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.5rem; margin-bottom: 2rem; }
+        .stat-card { padding: 1.5rem; display: flex; align-items: center; gap: 1.5rem; }
+        .stat-icon { width: 50px; height: 50px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; }
+        .stat-details h4 { color: var(--text-muted); font-size: 0.85rem; font-family: var(--font-main); text-transform: uppercase; letter-spacing: 1px; }
+        .stat-details h2 { font-size: 2rem; color: var(--text-main); margin-top: 0.25rem; }
+        .dash-charts { display: grid; grid-template-columns: 2fr 1fr; gap: 1.5rem; margin-bottom: 2rem; }
+        .table-responsive { width: 100%; overflow-x: auto; }
+        table { width: 100%; border-collapse: collapse; text-align: left; }
+        th, td { padding: 1rem; border-bottom: 1px solid var(--border-light); font-size: 0.9rem; }
+        th { color: var(--text-muted); font-weight: 600; text-transform: uppercase; font-size: 0.75rem; letter-spacing: 1px; }
+        /* --- CARDS & GRIDS --- */
+        .grid-3 { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 2rem; }
+        .news-card { display: flex; flex-direction: column; padding: 1.5rem; }
+        .news-meta { font-size: 0.8rem; color: var(--text-muted); margin-bottom: 0.5rem; display: flex; justify-content: space-between; }
+        .news-title { font-size: 1.1rem; margin-bottom: 1rem; line-height: 1.4; }
+        .alert-card { border-left: 4px solid var(--primary); }
+        .feature-card { padding: 2rem; text-align: center; cursor: pointer; }
+        .feature-icon { font-size: 3rem; color: var(--primary); margin-bottom: 1.5rem; }
+        /* --- MODALS & TOASTS --- */
+        .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); backdrop-filter: blur(8px); display: none; align-items: center; justify-content: center; z-index: 2000; opacity: 0; transition: opacity 0.3s; }
+        .modal-overlay.active { display: flex; opacity: 1; }
+        .modal-content { background: var(--bg-surface); border: 1px solid var(--border-light); border-radius: var(--radius-xl); padding: 2.5rem; width: 90%; max-width: 500px; position: relative; transform: translateY(20px) scale(0.95); transition: all 0.3s; box-shadow: var(--shadow-glass); }
+        .modal-overlay.active .modal-content { transform: translateY(0) scale(1); }
+        .close-modal { position: absolute; top: 1.5rem; right: 1.5rem; background: none; border: none; color: var(--text-muted); font-size: 1.5rem; cursor: pointer; transition: color 0.3s; }
+        .close-modal:hover { color: var(--text-main); }
+        #toast-container { position: fixed; bottom: 2rem; right: 2rem; z-index: 3000; display: flex; flex-direction: column; gap: 1rem; }
+        .toast { background: var(--bg-surface); border: 1px solid var(--border-light); padding: 1rem 1.5rem; border-radius: var(--radius-md); display: flex; align-items: center; gap: 1rem; box-shadow: var(--shadow-glass); animation: slideIn 0.3s forwards; border-left: 4px solid var(--primary); }
+        .toast.fade-out { animation: fadeOut 0.3s forwards; }
+        @keyframes slideIn { from { transform: translateX(100%); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
+        @keyframes fadeOut { from { transform: translateX(0); opacity: 1; } to { transform: translateX(100%); opacity: 0; } }
+        /* --- FOOTER --- */
+        footer { border-top: 1px solid var(--border-light); padding: 4rem 0 2rem; margin-top: 4rem; background: rgba(0,0,0,0.3); }
+        .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 3rem; margin-bottom: 3rem; }
+        .footer-links { list-style: none; }
+        .footer-links li { margin-bottom: 0.75rem; }
+        .footer-links a { color: var(--text-muted); font-size: 0.9rem; }
+        .footer-bottom { border-top: 1px solid var(--border-light); padding-top: 2rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; font-size: 0.85rem; color: var(--text-muted); }
+        /* --- RESPONSIVE --- */
+        @media (max-width: 1024px) {
+            .hero-content { grid-template-columns: 1fr; text-align: center; }
+            .hero-text h1 { font-size: 3.5rem; }
+            .hero-text p { margin: 0 auto 2.5rem; }
+            .hero-actions { justify-content: center; }
+            .dash-charts { grid-template-columns: 1fr; }
+        }
+        @media (max-width: 768px) {
+            .scanner-grid { grid-template-columns: 1fr; }
+            .nav-links {
+                position: fixed; top: 70px; left: 0; width: 100%; height: calc(100vh - 70px);
+                background: var(--bg-surface); flex-direction: column; padding: 2rem;
+                clip-path: circle(0% at 100% 0); transition: clip-path 0.4s ease-out;
+            }
+            .nav-links.active { clip-path: circle(150% at 100% 0); }
+            .mobile-menu-btn { display: block; }
+            .section-title { font-size: 2.2rem; }
+        }
+        .filter-btn-container {
+            display: flex;
+            overflow-x: auto;
+            white-space: nowrap;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none; /* Firefox */
+        }
+        .filter-btn-container::-webkit-scrollbar {
+            display: none; /* Safari and Chrome */
+        }
+        .filter-btn {
+            flex-shrink: 0;
+            margin-right: 8px;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="cyber-bg"></canvas>
+    <nav id="navbar">
+        <div class="container nav-container">
+            <div class="logo" onclick="app.navigate('home')">
+                <div class="logo-shield"><i class="fa-solid fa-shield-halved text-white"></i></div>
+                <span id="brand-name">CYBERGUARD AI</span>
+            </div>
+            <ul class="nav-links" id="nav-links">
+                <li><a class="nav-link active" data-target="home">Home</a></li>
+                <li><a class="nav-link" data-target="scanner">Threat Scanner</a></li>
+                <li><a class="nav-link" data-target="news">Cyber News</a></li>
+                <li><a class="nav-link" data-target="alerts">Alerts</a></li>
+                <li><a class="nav-link" data-target="report">Report Fraud</a></li>
+                <li><a class="nav-link" data-target="security">Security Center</a></li>
+                <li><a class="nav-link" data-target="about">About</a></li>
+                <li><a class="nav-link" data-target="dashboard" id="nav-dash" style="display:none;"><i class="fa-solid fa-chart-line"></i> SOC</a></li>
+                <li><button class="btn btn-outline" style="padding: 0.4rem 1rem;" onclick="app.toggleLogin()" id="btn-login"><i class="fa-solid fa-user-lock"></i> Admin</button></li>
+            </ul>
+            <button class="mobile-menu-btn" id="mobile-menu-btn"><i class="fa-solid fa-bars"></i></button>
+        </div>
+    </nav>
+    <main id="app-content">
+        <section id="home" class="view-section active">
+            <div class="container hero">
+                <div class="hero-content">
+                    <div class="hero-text">
+                        <div class="status-pill">
+                            <div class="status-dot"></div>
+                            SYSTEM PROTECTED | AI ACTIVE
+                        </div>
+                        <h1>AI-POWERED<br>CYBER FRAUD PROTECTION</h1>
+                        <p>Detect threats. Understand attacks. Protect people. Report cyber fraud before it becomes a bigger problem.</p>
+                        <div class="hero-actions">
+                            <button class="btn btn-primary" onclick="app.navigate('scanner')"><i class="fa-solid fa-radar"></i> SCAN A THREAT</button>
+                            <button class="btn btn-outline" onclick="app.navigate('report')"><i class="fa-solid fa-file-shield"></i> REPORT CYBER FRAUD</button>
+                            <button class="btn btn-outline" onclick="app.navigate('security')" style="border:none;"><i class="fa-solid fa-book-open"></i> EXPLORE SECURITY CENTER</button>
+                        </div>
+                    </div>
+                    <div class="hero-visual" id="hero-3d">
+                        <div class="shield-container" id="shield-obj">
+                            <div class="shield-layer shield-base" style="background-image: url('data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'%233b82f6\' stroke-width=\'1\' stroke-linecap=\'round\' stroke-linejoin=\'round\'><path d=\'M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z\'/></svg>');"></div>
+                            <div class="shield-layer shield-core" style="background-image: url('data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'%2306b6d4\' stroke-width=\'2\' stroke-linecap=\'round\' stroke-linejoin=\'round\'><path d=\'M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z\'/></svg>'); transform: scale(0.8) translateZ(30px);"></div>
+                            <div class="shield-ring"></div>
+                            <div class="floating-indicator ind-1">
+                                <span style="color:var(--success)"><i class="fa-solid fa-check-circle"></i> AI ENGINE</span>
+                                <span style="font-size:0.7rem; color:var(--text-muted)">ONLINE</span>
+                            </div>
+                            <div class="floating-indicator ind-2">
+                                <span style="color:var(--info)"><i class="fa-solid fa-network-wired"></i> THREAT INTEL</span>
+                                <span style="font-size:0.7rem; color:var(--text-muted)" id="intel-status">ACTIVE</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section id="scanner" class="view-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Threat Intelligence Scanner</h2>
+                    <p class="section-desc">Analyze URLs, messages, and emails for potential fraud indicators using local pattern analysis and configured APIs.</p>
+                </div>
+                <div class="scanner-grid">
+                    <div class="glass-panel" style="padding: 2rem;">
+                        <div class="scanner-tabs">
+                            <button class="scan-tab-btn active" data-tab="scan-url"><i class="fa-solid fa-link"></i> URL</button>
+                            <button class="scan-tab-btn" data-tab="scan-msg"><i class="fa-solid fa-comment-sms"></i> MESSAGE</button>
+                            <button class="scan-tab-btn" data-tab="scan-email"><i class="fa-solid fa-envelope"></i> EMAIL</button>
+                        </div>
+                        <div id="scan-url" class="scan-content active">
+                            <div class="form-group">
+                                <label class="form-label">Enter Suspicious URL</label>
+                                <input type="url" id="inp-url" class="form-control" placeholder="https://example.com/login">
+                            </div>
+                            <button class="btn btn-primary w-full" style="width:100%" onclick="app.analyze('url')">ANALYZE THREAT</button>
+                        </div>
+                        <div id="scan-msg" class="scan-content">
+                            <div class="form-group">
+                                <label class="form-label">Paste SMS/WhatsApp Message</label>
+                                <textarea id="inp-msg" class="form-control" placeholder="Paste message content here..."></textarea>
+                            </div>
+                            <button class="btn btn-primary w-full" style="width:100%" onclick="app.analyze('msg')">ANALYZE MESSAGE</button>
+                        </div>
+                        <div id="scan-email" class="scan-content">
+                            <div class="form-group">
+                                <label class="form-label">Email Subject</label>
+                                <input type="text" id="inp-email-sub" class="form-control" placeholder="Subject line...">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Email Body</label>
+                                <textarea id="inp-email-body" class="form-control" placeholder="Paste email content..."></textarea>
+                            </div>
+                            <button class="btn btn-primary w-full" style="width:100%" onclick="app.analyze('email')">ANALYZE EMAIL</button>
+                        </div>
+                        <div style="margin-top: 1.5rem; font-size: 0.8rem; color: var(--text-muted); text-align: center;">
+                            <i class="fa-solid fa-circle-info"></i> Analysis uses rule-based pattern matching. Do not submit highly sensitive personal data.
+                        </div>
+                    </div>
+                    <div class="glass-panel analysis-box" id="analysis-output">
+                        <div id="analysis-idle" style="color: var(--text-muted);">
+                            <i class="fa-solid fa-shield-virus" style="font-size: 4rem; opacity: 0.3; margin-bottom: 1rem; display: block;"></i>
+                            Awaiting input. Submit a threat for analysis.
+                        </div>
+                        <div id="analysis-loading" style="display: none; color: var(--primary);">
+                            <i class="fa-solid fa-circle-notch fa-spin" style="font-size: 3rem; margin-bottom: 1rem;"></i>
+                            <h3 style="font-family: var(--font-mono); font-size: 1rem;">Running Security Heuristics...</h3>
+                        </div>
+                        <div id="analysis-result" style="display: none; width: 100%;">
+                            <div class="flex justify-between items-center mb-4" style="display:flex; justify-content:space-between; margin-bottom: 1rem;">
+                                <h3 style="font-size:1.2rem;">Analysis Report</h3>
+                                <span class="badge" id="res-badge">STATUS</span>
+                            </div>
+                            <div class="risk-meter">
+                                <div class="risk-meter-bg"></div>
+                                <div class="risk-meter-fill" id="res-gauge"></div>
+                                <div class="risk-score-display" id="res-score">0</div>
+                            </div>
+                            <div style="text-align:center; font-size:0.8rem; color:var(--text-muted); text-transform:uppercase; margin-bottom:2rem;">Risk Score</div>
+                            <div style="background: rgba(0,0,0,0.3); padding: 1rem; border-radius: 8px; text-align: left; margin-bottom: 1rem;">
+                                <div style="font-size:0.8rem; color:var(--text-muted); margin-bottom:0.25rem;">Threat Category</div>
+                                <div style="font-weight:600; color:var(--info);" id="res-category">Phishing</div>
+                            </div>
+                            <div class="indicators-list" id="res-indicators">
+                            </div>
+                            <div style="margin-top: 2rem; padding: 1rem; border-left: 4px solid var(--primary); background: rgba(59,130,246,0.1); text-align: left;">
+                                <h4 style="font-size:0.9rem; margin-bottom:0.5rem;"><i class="fa-solid fa-lightbulb"></i> Recommended Action</h4>
+                                <p id="res-action" style="font-size:0.85rem; color:var(--text-muted);"></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section id="news" class="view-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Cyber News & Intelligence</h2>
+                    <p class="section-desc">Stay updated with the latest cybersecurity threats, data breaches, and industry news.</p>
+                </div>
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 2rem; flex-wrap:wrap; gap:1rem;">
+                    <div class="status-pill" style="margin:0; background:rgba(14, 165, 233, 0.1); border-color:var(--info); color:var(--info);" id="news-status-container">
+                        <i class="fa-solid fa-satellite-dish" id="news-status-icon"></i> <span id="news-status-text">Fetching Intelligence...</span>
+                    </div>
+                    <button class="btn btn-outline" id="btn-news-refresh" onclick="app.refreshNews()"><i class="fa-solid fa-rotate-right"></i> Refresh</button>
+                </div>
+                <div class="filter-btn-container" id="news-filters-container">
+                </div>
+                <div class="grid-3" id="news-grid">
+                </div>
+            </div>
+        </section>
+        <section id="alerts" class="view-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Live Cyber Alerts</h2>
+                    <p class="section-desc">Active campaigns, vulnerability warnings, and regional threat advisories.</p>
+                </div>
+                <div class="grid-3" id="alerts-grid">
+                </div>
+                <div class="glass-panel" style="margin-top: 4rem; padding: 2rem; position: relative; overflow:hidden;">
+                    <h3 style="margin-bottom: 1rem;"><i class="fa-solid fa-map-location-dot text-primary"></i> Regional Threat Visualization</h3>
+                    <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 2rem;">* Threat visualization based on available reports / sample visualization.</p>
+                    <div id="map-container" style="height: 400px; background: rgba(0,0,0,0.5); border-radius: 12px; border: 1px solid var(--border-light); position: relative; background-image: radial-gradient(var(--border-light) 1px, transparent 1px); background-size: 20px 20px;">
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section id="report" class="view-section">
+            <div class="container" style="max-width: 800px;">
+                <div class="section-header">
+                    <h2 class="section-title">Report Cyber Fraud</h2>
+                    <p class="section-desc">Report a suspected cyber fraud incident and securely record the details for investigation.</p>
+                </div>
+                <div class="glass-panel" style="padding: 2.5rem;">
+                    <div style="background: rgba(245,158,11,0.1); border-left: 4px solid var(--warning); padding: 1rem; margin-bottom: 2rem; border-radius: 0 8px 8px 0; font-size: 0.85rem;">
+                        <strong>Important:</strong> For official cybercrime reporting, users should use the appropriate official government cybercrime reporting channel (e.g., cybercrime.gov.in in India or local equivalent). This form logs data to the configured system backend.
+                    </div>
+                    <form id="incident-form" onsubmit="app.submitIncident(event)">
+                        <div style="display:grid; grid-template-columns: 1fr 1fr; gap:1.5rem;">
+                            <div class="form-group">
+                                <label class="form-label">Full Name</label>
+                                <input type="text" id="rep-name" class="form-control" required>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Email Address</label>
+                                <input type="email" id="rep-email" class="form-control" required>
+                            </div>
+                        </div>
+                        <div style="display:grid; grid-template-columns: 1fr 1fr; gap:1.5rem;">
+                            <div class="form-group">
+                                <label class="form-label">Fraud Category</label>
+                                <select id="rep-type" class="form-control" required>
+                                    <option value="">Select...</option>
+                                    <option value="UPI Fraud">UPI / Banking Fraud</option>
+                                    <option value="Phishing">Phishing</option>
+                                    <option value="Fake Job Scam">Fake Job Scam</option>
+                                    <option value="Investment Scam">Investment / Crypto Scam</option>
+                                    <option value="Identity Theft">Identity Theft</option>
+                                    <option value="Other">Other</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Estimated Financial Loss (if any)</label>
+                                <input type="number" id="rep-loss" class="form-control" placeholder="0.00">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Suspicious URL / Phone Number</label>
+                            <input type="text" id="rep-source" class="form-control" placeholder="Include attacker details if known">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Incident Description</label>
+                            <textarea id="rep-desc" class="form-control" required placeholder="Describe exactly what happened..."></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary" style="width: 100%; padding: 1rem; font-size: 1.1rem;"><i class="fa-solid fa-paper-plane"></i> SUBMIT INCIDENT</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+        <section id="security" class="view-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Security Center</h2>
+                    <p class="section-desc">Empower yourself with knowledge. Learn how to protect your digital identity and assets.</p>
+                </div>
+                <div class="grid-3 mb-5" style="margin-bottom: 3rem;">
+                    <div class="glass-panel feature-card" onclick="app.openModal('info-phishing')">
+                        <i class="fa-solid fa-fish-fins feature-icon"></i>
+                        <h3>Phishing Protection</h3>
+                        <p style="font-size: 0.85rem; color:var(--text-muted); margin-top:0.5rem;">Identify deceptive emails and fake websites.</p>
+                    </div>
+                    <div class="glass-panel feature-card" onclick="app.openModal('info-upi')">
+                        <i class="fa-solid fa-mobile-screen feature-icon"></i>
+                        <h3>UPI & Banking Safety</h3>
+                        <p style="font-size: 0.85rem; color:var(--text-muted); margin-top:0.5rem;">Secure transactions and avoid OTP scams.</p>
+                    </div>
+                    <div class="glass-panel feature-card" onclick="app.openModal('info-job')">
+                        <i class="fa-solid fa-briefcase feature-icon"></i>
+                        <h3>Fake Job Scams</h3>
+                        <p style="font-size: 0.85rem; color:var(--text-muted); margin-top:0.5rem;">Recognize fraudulent recruitment offers.</p>
+                    </div>
+                </div>
+                <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 2rem;">
+                    <div class="glass-panel" style="padding: 2rem;">
+                        <h3 style="margin-bottom: 1rem;"><i class="fa-solid fa-key text-warning"></i> Password Strength Analyzer</h3>
+                        <p style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 1.5rem;">Your password is analyzed locally and is not stored or transmitted.</p>
+                        <div class="form-group">
+                            <input type="password" id="pwd-input" class="form-control" placeholder="Type a password to test..." oninput="app.checkPassword()">
+                        </div>
+                        <div style="height: 6px; background: rgba(255,255,255,0.1); border-radius: 3px; overflow: hidden; margin-bottom: 0.5rem;">
+                            <div id="pwd-bar" style="height: 100%; width: 0%; transition: var(--transition); background: var(--danger);"></div>
+                        </div>
+                        <div id="pwd-label" style="text-align: right; font-size: 0.85rem; font-weight: 600; color: var(--danger);">Weak</div>
+                        <ul style="list-style:none; font-size:0.8rem; color:var(--text-muted); margin-top:1.5rem; display:grid; grid-template-columns:1fr 1fr; gap:0.5rem;" id="pwd-reqs">
+                            <li id="req-len"><i class="fa-solid fa-xmark text-danger"></i> 8+ chars</li>
+                            <li id="req-up"><i class="fa-solid fa-xmark text-danger"></i> Uppercase</li>
+                            <li id="req-num"><i class="fa-solid fa-xmark text-danger"></i> Number</li>
+                            <li id="req-spec"><i class="fa-solid fa-xmark text-danger"></i> Special</li>
+                        </ul>
+                    </div>
+                    <div class="glass-panel" style="padding: 2rem; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center;">
+                        <i class="fa-solid fa-graduation-cap" style="font-size: 3.5rem; color: var(--secondary); margin-bottom: 1rem;"></i>
+                        <h3 style="margin-bottom: 0.5rem;">Cyber Awareness Quiz</h3>
+                        <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 2rem;">Test your knowledge against common social engineering and technical threats.</p>
+                        <button class="btn btn-primary" onclick="app.openQuiz()">START QUIZ</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section id="dashboard" class="view-section">
+            <div class="container">
+                <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid var(--border-light); padding-bottom:1rem; margin-bottom:2rem;">
+                    <div>
+                        <h2 class="section-title" style="margin-bottom:0; font-size:2rem;">SOC Dashboard</h2>
+                        <p class="section-desc" style="margin:0; font-size:0.9rem;">Security Operations Center</p>
+                    </div>
+                    <button class="btn btn-outline" style="border-color:var(--danger); color:var(--danger);" onclick="app.logout()"><i class="fa-solid fa-right-from-bracket"></i> Logout</button>
+                </div>
+                <div class="dash-stats">
+                    <div class="glass-panel stat-card">
+                        <div class="stat-icon" style="background:rgba(59,130,246,0.1); color:var(--primary);"><i class="fa-solid fa-folder-open"></i></div>
+                        <div class="stat-details"><h4>Total Incidents</h4><h2 id="dash-total">0</h2></div>
+                    </div>
+                    <div class="glass-panel stat-card">
+                        <div class="stat-icon" style="background:rgba(239,68,68,0.1); color:var(--danger);"><i class="fa-solid fa-skull-crossbones"></i></div>
+                        <div class="stat-details"><h4>Critical Risk</h4><h2 id="dash-critical">0</h2></div>
+                    </div>
+                    <div class="glass-panel stat-card">
+                        <div class="stat-icon" style="background:rgba(16,185,129,0.1); color:var(--success);"><i class="fa-solid fa-shield-check"></i></div>
+                        <div class="stat-details"><h4>Resolved</h4><h2 id="dash-resolved">0</h2></div>
+                    </div>
+                </div>
+                <div class="dash-charts">
+                    <div class="glass-panel" style="padding:1.5rem;">
+                        <h4 style="margin-bottom:1rem;">Incident Trend</h4>
+                        <div style="height:250px;"><canvas id="chart-trend"></canvas></div>
+                    </div>
+                    <div class="glass-panel" style="padding:1.5rem;">
+                        <h4 style="margin-bottom:1rem;">Threat Distribution</h4>
+                        <div style="height:250px;"><canvas id="chart-dist"></canvas></div>
+                    </div>
+                </div>
+                <div class="glass-panel" style="padding:1.5rem;">
+                    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1.5rem;">
+                        <h4 style="margin:0;">Recent Incident Log</h4>
+                        <div style="font-size:0.8rem; color:var(--text-muted);">Storage: <span id="storage-mode" style="color:var(--info);"></span></div>
+                    </div>
+                    <div class="table-responsive">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Incident ID</th>
+                                    <th>Date</th>
+                                    <th>Category</th>
+                                    <th>Reporter</th>
+                                    <th>Status</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody id="dash-table">
+                            </tbody>
+                        </table>
+                        <div id="dash-empty" style="text-align:center; padding: 2rem; color:var(--text-muted); display:none;">No incidents reported yet.</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section id="about" class="view-section">
+            <div class="container" style="max-width: 900px;">
+                <div class="section-header">
+                    <h2 class="section-title">Security for a Digital World</h2>
+                </div>
+                <div class="glass-panel" style="padding: 3rem; text-align: center; margin-bottom: 3rem;">
+                    <i class="fa-solid fa-shield-halved" style="font-size: 4rem; color: var(--primary); margin-bottom: 1.5rem;"></i>
+                    <h3 style="font-size: 1.8rem; margin-bottom: 1rem;">CYBERGUARD AI</h3>
+                    <p style="color: var(--text-muted); font-size: 1.1rem; max-width: 700px; margin: 0 auto; line-height: 1.8;">
+                        CyberGuard AI is an AI-powered cybersecurity awareness and cyber-fraud response platform designed to help people identify suspicious digital activity, understand cyber threats, and take safer actions.
+                    </p>
+                </div>
+                <div class="glass-panel" style="padding: 3rem; display: flex; flex-direction: column; align-items: center; text-align: center;">
+                    <div style="width: 100px; height: 100px; border-radius: 50%; background: linear-gradient(135deg, var(--primary), var(--secondary)); display: flex; align-items: center; justify-content: center; font-size: 2.5rem; font-family: var(--font-display); font-weight: 700; color: white; margin-bottom: 1.5rem; box-shadow: var(--shadow-neon);">
+                        SP
+                    </div>
+                    <h3 style="font-size: 1.5rem; margin-bottom: 0.25rem;" id="about-founder">Srikanth Paka</h3>
+                    <p style="color: var(--primary); font-weight: 600; font-size: 0.9rem; margin-bottom: 0.5rem;" id="about-role">Founder & CEO, AUREXA</p>
+                    <p style="color: var(--text-muted); font-size: 0.85rem; margin-bottom: 1.5rem;" id="about-edu">B.Tech CSE — Cyber Security, GNITC</p>
+                    
+                    <div style="display: flex; gap: 1rem; margin-bottom: 2rem;">
+                        <a href="#" class="btn btn-outline" style="padding: 0.5rem; border-radius: 50%;"><i class="fa-brands fa-linkedin-in"></i></a>
+                        <a href="#" class="btn btn-outline" style="padding: 0.5rem; border-radius: 50%;"><i class="fa-solid fa-envelope"></i></a>
+                        <a href="#" class="btn btn-outline" style="padding: 0.5rem; border-radius: 50%;"><i class="fa-solid fa-globe"></i></a>
+                    </div>
+                    <div style="font-size: 0.8rem; letter-spacing: 2px; text-transform: uppercase; color: var(--text-muted);">
+                        AUREXA • Cybersecurity • AI • Innovation
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <h3 style="font-size: 1.2rem; margin-bottom: 1rem; font-family: var(--font-display);">CYBERGUARD AI</h3>
+                    <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1.5rem;">Detect. Understand. Prevent. Report.</p>
+                    <div style="font-family: var(--font-mono); font-size: 0.8rem; color: var(--primary);">An AUREXA Initiative</div>
+                </div>
+                <div>
+                    <h4 style="margin-bottom: 1rem;">Platform</h4>
+                    <ul class="footer-links">
+                        <li><a href="#" onclick="app.navigate('scanner'); return false;">Threat Scanner</a></li>
+                        <li><a href="#" onclick="app.navigate('news'); return false;">Cyber News</a></li>
+                        <li><a href="#" onclick="app.navigate('report'); return false;">Report Fraud</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 style="margin-bottom: 1rem;">Legal & Resources</h4>
+                    <ul class="footer-links">
+                        <li><a href="#" onclick="app.navigate('security'); return false;">Security Center</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div>&copy; 2026 CyberGuard AI. All rights reserved.</div>
+                <div>Built & Led by <span id="footer-founder" style="color: var(--text-main); font-weight: 500;">Srikanth Paka</span></div>
+                <div>AUREXA • Cybersecurity • AI • Innovation</div>
+            </div>
+        </div>
+    </footer>
+    <div class="modal-overlay" id="modal-login">
+        <div class="modal-content">
+            <button class="close-modal" onclick="app.closeModal('modal-login')"><i class="fa-solid fa-xmark"></i></button>
+            <h3 style="margin-bottom: 0.5rem;">SOC Admin Access</h3>
+            <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1.5rem;">Backend authentication mode: Local Dev</p>
+            <form onsubmit="app.handleLogin(event)">
+                <div class="form-group"><input type="text" id="login-user" class="form-control" placeholder="Username" required></div>
+                <div class="form-group"><input type="password" id="login-pwd" class="form-control" placeholder="Password" required></div>
+                <button type="submit" class="btn btn-primary" style="width:100%">LOGIN</button>
+                <div style="font-size:0.75rem; text-align:center; margin-top:1rem; color:var(--text-muted);">Dev config: admin / admin</div>
+            </form>
+        </div>
+    </div>
+    <div class="modal-overlay" id="modal-quiz">
+        <div class="modal-content" style="max-width: 600px;">
+            <button class="close-modal" onclick="app.closeModal('modal-quiz')"><i class="fa-solid fa-xmark"></i></button>
+            <div id="quiz-ui">
+                <div style="display:flex; justify-content:space-between; margin-bottom: 1rem;">
+                    <h4>Cyber Quiz</h4>
+                    <span class="badge badge-info" id="quiz-progress">1/5</span>
+                </div>
+                <p id="quiz-q" style="font-size: 1.1rem; margin-bottom: 1.5rem;"></p>
+                <div id="quiz-opts" style="display:flex; flex-direction:column; gap:0.5rem;"></div>
+                <div id="quiz-feedback" style="margin-top:1rem; padding:1rem; border-radius:8px; display:none; font-size:0.9rem;"></div>
+                <button id="quiz-next" class="btn btn-primary" style="width:100%; margin-top:1rem; display:none;" onclick="app.nextQuiz()">Next Question</button>
+            </div>
+            <div id="quiz-result" style="display:none; text-align:center;">
+                <i class="fa-solid fa-trophy text-warning" style="font-size:3rem; margin-bottom:1rem;"></i>
+                <h3>Quiz Complete</h3>
+                <p style="font-size:1.5rem; font-weight:bold; color:var(--primary); margin:1rem 0;">Score: <span id="quiz-score"></span>/5</p>
+                <button class="btn btn-outline" onclick="app.openQuiz()">Retake</button>
+            </div>
+        </div>
+    </div>
+    <div class="modal-overlay" id="modal-info">
+        <div class="modal-content">
+            <button class="close-modal" onclick="app.closeModal('modal-info')"><i class="fa-solid fa-xmark"></i></button>
+            <h3 id="info-title" style="margin-bottom: 1rem; color: var(--primary);">Title</h3>
+            <div id="info-body" style="font-size: 0.95rem; color: var(--text-muted); line-height: 1.7;">Body</div>
+        </div>
+    </div>
+    <div id="toast-container"></div>
+    <script>
+        // ==================================================
+        // CONFIGURATION
+        // ==================================================
+        const CONFIG = {
+            siteName: "CYBERGUARD AI",
+            parentBrand: "AUREXA",
+            founderName: "Srikanth Paka",
+            founderRole: "Founder & CEO",
+            college: "GNITC",
+            course: "B.Tech CSE — Cyber Security",
+            website: "https://aurexa.space",
+            
+            // APIs (Leave empty to use local simulated fallback)
+            apiKey: "1927297bd8838e5315576e7fce880ff6", // Added API Key
+            backendEndpoint: "", 
+            threatIntelEndpoint: "",
+            newsEndpoint: "",
+            supabaseUrl: "",
+            supabaseAnonKey: "",
+            
+            newsRefreshMinutes: 15,
+            
+            // Dev Admin credentials
+            devUser: "admin",
+            devPass: "admin"
+        };
+        // ==================================================
+        // DATA & STATE
+        // ==================================================
+        const appState = {
+            isAdmin: localStorage.getItem('cg_admin') === 'true',
+            incidents: JSON.parse(localStorage.getItem('cg_incidents')) || [],
+            charts: { trend: null, dist: null },
+            quiz: {
+                current: 0, score: 0,
+                questions: [
+                    { q: "You receive an SMS saying your bank account is blocked with a link to update KYC. Action?", opts: ["Click it immediately", "Reply asking for proof", "Ignore and check official app", "Forward to a friend"], a: 2, exp: "Banks never send SMS links for KYC. Always use the official app." },
+                    { q: "Someone on a marketplace sends a QR code for you to scan to 'receive money'.", opts: ["Scan it to get paid", "Decline, scanning QR is for sending money", "Ask for a different QR", "Give them your card details"], a: 1, exp: "UPI PIN is NEVER required to receive money." },
+                    { q: "What indicates a website connection is encrypted?", opts: ["It looks professional", "HTTPS in URL", "A padlock icon in the webpage image", "It has no ads"], a: 1, exp: "HTTPS encrypts data, but remember scammers can also get HTTPS certificates." },
+                    { q: "A 'police officer' video calls you saying your Aadhaar is linked to crime.", opts: ["Pay the fine immediately", "Provide OTP to verify identity", "Disconnect and report to 1930", "Stay on call for 4 hours"], a: 2, exp: "This is a Digital Arrest scam. Real police don't interrogate via WhatsApp." },
+                    { q: "Which password is the most secure?", opts: ["Password@123", "Rohan1990", "Tr33!Blk$9Qw", "qwerty"], a: 2, exp: "Long, random mix of cases, numbers, and symbols is best." }
+                ]
+            },
+            info: {
+                'info-phishing': { title: '<i class="fa-solid fa-fish-fins"></i> Phishing Protection', body: 'Phishing tricks you into revealing sensitive data.<br><br><b>Red Flags:</b><br>- Urgent/Panic language.<br>- Mismatched domains (e.g., b4nk.com).<br>- Requests for OTPs or passwords.<br><br><b>Action:</b> Never click links in unexpected emails. Go to the official site directly.' },
+                'info-upi': { title: '<i class="fa-solid fa-mobile-screen"></i> UPI Safety', body: '<b>Golden Rule:</b> You NEVER need to enter your UPI PIN to receive money.<br><br>- Do not scan QR codes to receive money.<br>- Do not download screen sharing apps (AnyDesk) if asked by "customer care".' },
+                'info-job': { title: '<i class="fa-solid fa-briefcase"></i> Fake Job Scams', body: 'Scammers offer easy part-time work (like liking YouTube videos).<br><br>- They pay a small amount first to build trust.<br>- Then they ask for a "security deposit" or "upgrade fee".<br><br><b>Rule:</b> Real jobs pay you, you don\'t pay them.' }
+            }
+        };
+        // ==================================================
+        // CORE APPLICATION CONTROLLER
+        // ==================================================
+        const app = {
+            init() {
+                this.applyConfig();
+                this.setupNavigation();
+                this.setupScannerTabs();
+                this.initCanvasBackground();
+                this.init3DShield();
+                this.renderAlerts();
+                this.generateMap();
+                
+                if (appState.isAdmin) this.enableAdminUI();
+                
+                // Route to hash if exists
+                const hash = window.location.hash.replace('#', '') || 'home';
+                this.navigate(hash);
+            },
+            applyConfig() {
+                document.getElementById('brand-name').innerText = CONFIG.siteName;
+                document.getElementById('about-founder').innerText = CONFIG.founderName;
+                document.getElementById('about-role').innerText = `${CONFIG.founderRole}, ${CONFIG.parentBrand}`;
+                document.getElementById('about-edu').innerText = CONFIG.course + ", " + CONFIG.college;
+                document.getElementById('footer-founder').innerText = CONFIG.founderName;
+                
+                const storageMode = CONFIG.backendEndpoint ? 'Cloud Backend API' : (CONFIG.supabaseUrl ? 'Supabase DB' : 'Local Browser Storage');
+                document.getElementById('storage-mode').innerText = storageMode;
+            },
+            // --- NAVIGATION ---
+            setupNavigation() {
+                document.querySelectorAll('.nav-link').forEach(link => {
+                    link.addEventListener('click', (e) => {
+                        const target = e.currentTarget.dataset.target;
+                        if(target === 'dashboard' && !appState.isAdmin) {
+                            this.toggleLogin();
+                            return;
+                        }
+                        this.navigate(target);
+                        if(window.innerWidth <= 768) document.getElementById('nav-links').classList.remove('active');
+                    });
+                });
+                document.getElementById('mobile-menu-btn').addEventListener('click', () => {
+                    document.getElementById('nav-links').classList.toggle('active');
+                });
+            },
+            navigate(target) {
+                document.querySelectorAll('.view-section').forEach(s => s.classList.remove('active'));
+                document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+                
+                const sec = document.getElementById(target);
+                if(sec) sec.classList.add('active');
+                
+                const link = document.querySelector(`.nav-link[data-target="${target}"]`);
+                if(link) link.classList.add('active');
+                window.scrollTo({top: 0, behavior: 'smooth'});
+                window.location.hash = target;
+                if(target === 'news') this.fetchNews();
+                if(target === 'dashboard') this.initDashboard();
+            },
+            // --- SCANNER ---
+            setupScannerTabs() {
+                document.querySelectorAll('.scan-tab-btn').forEach(btn => {
+                    btn.addEventListener('click', (e) => {
+                        document.querySelectorAll('.scan-tab-btn').forEach(b => b.classList.remove('active'));
+                        document.querySelectorAll('.scan-content').forEach(c => c.classList.remove('active'));
+                        e.currentTarget.classList.add('active');
+                        document.getElementById(e.currentTarget.dataset.tab).classList.add('active');
+                        
+                        document.getElementById('analysis-idle').style.display = 'block';
+                        document.getElementById('analysis-result').style.display = 'none';
+                    });
+                });
+            },
+            analyze(type) {
+                let text = "";
+                let score = 0;
+                let inds = [];
+                
+                if(type === 'url') text = document.getElementById('inp-url').value.toLowerCase();
+                if(type === 'msg') text = document.getElementById('inp-msg').value.toLowerCase();
+                if(type === 'email') text = document.getElementById('inp-email-sub').value.toLowerCase() + " " + document.getElementById('inp-email-body').value.toLowerCase();
+                if(!text.trim()) return this.showToast('Please enter content to analyze.', 'error');
+                // Local Heuristics
+                if(type === 'url') {
+                    if(!text.startsWith('https')) { score += 40; inds.push("Missing secure HTTPS connection."); }
+                    if(/\d+\.\d+\.\d+\.\d+/.test(text)) { score += 60; inds.push("Uses raw IP address instead of domain."); }
+                    if(/login|update|verify|secure|auth/.test(text)) { score += 30; inds.push("Suspicious keywords aiming to steal credentials."); }
+                    if(text.split('.').length > 4) { score += 30; inds.push("Excessive subdomains masking real domain."); }
+                } else {
+                    if(/urgent|suspend|block|immediate/.test(text)) { score += 40; inds.push("Urgency/Panic tactics detected."); }
+                    if(/otp|password|pin/.test(text)) { score += 50; inds.push("Request for sensitive credentials."); }
+                    if(/win|lottery|prize|reward/.test(text)) { score += 40; inds.push("Greed hooks / Too good to be true."); }
+                    if(/apk|download link/.test(text)) { score += 50; inds.push("Malware distribution risk."); }
+                    if(/task|youtube|like|subscribe/.test(text)) { score += 60; inds.push("Matches Fake Task/Job scam signature."); }
+                }
+                if(score === 0 && text.length > 5) { score = 10; inds.push("No obvious malicious patterns found locally."); }
+                if(score > 99) score = 99;
+                this.processAnalysisUI(score, inds);
+            },
+            processAnalysisUI(score, inds) {
+                document.getElementById('analysis-idle').style.display = 'none';
+                document.getElementById('analysis-result').style.display = 'none';
+                document.getElementById('analysis-loading').style.display = 'flex';
+                setTimeout(() => {
+                    document.getElementById('analysis-loading').style.display = 'none';
+                    document.getElementById('analysis-result').style.display = 'block';
+                    const gauge = document.getElementById('res-gauge');
+                    const txt = document.getElementById('res-score');
+                    const badge = document.getElementById('res-badge');
+                    const cat = document.getElementById('res-category');
+                    const act = document.getElementById('res-action');
+                    const indList = document.getElementById('res-indicators');
+                    let color = 'var(--success)';
+                    let level = 'Unable to Verify / Low Risk';
+                    let bClass = 'badge-success';
+                    let action = "No immediate threat signatures detected by local engine. Still, do not share personal info.";
+                    if(score > 30) { color = 'var(--warning)'; level = 'Potentially Suspicious'; bClass = 'badge-warning'; action = "Exercise caution. Do not click links unless you independently verify the source."; }
+                    if(score > 70) { color = 'var(--danger)'; level = 'High Risk / Critical'; bClass = 'badge-danger'; action = "Malicious patterns detected. Do not interact. Delete and block sender."; cat.innerText = "Social Engineering / Phishing"; }
+                    if(score <= 30) cat.innerText = "Unknown / Benign";
+                    setTimeout(() => { gauge.style.transform = `rotate(${-45 + (score * 1.8)}deg)`; }, 100);
+                    gauge.style.borderTopColor = color; gauge.style.borderRightColor = color;
+                    txt.innerText = score; txt.style.color = color;
+                    badge.className = `badge ${bClass}`; badge.innerText = level;
+                    act.innerText = action;
+                    indList.innerHTML = inds.map(i => `<div class="ind-item"><i class="fa-solid ${score>50?'fa-triangle-exclamation text-danger':'fa-info-circle text-info'}"></i> ${i}</div>`).join('');
+                }, 1500);
+            },
+            // --- REPORT FRAUD ---
+            submitIncident(e) {
+                e.preventDefault();
+                const inc = {
+                    id: 'CG-2026-' + Math.floor(100000 + Math.random() * 900000),
+                    name: document.getElementById('rep-name').value,
+                    type: document.getElementById('rep-type').value,
+                    date: new Date().toLocaleDateString(),
+                    status: 'NEW',
+                    risk: 'Pending'
+                };
+                
+                appState.incidents.unshift(inc);
+                
+                // Logic based on CONFIG
+                if(CONFIG.backendEndpoint || CONFIG.supabaseUrl) {
+                    // Simulate API call
+                    this.showToast('Sending to secure backend...', 'info');
+                    setTimeout(() => { this.finalizeReport(inc, e.target); }, 1000);
+                } else {
+                    localStorage.setItem('cg_incidents', JSON.stringify(appState.incidents));
+                    this.finalizeReport(inc, e.target);
+                }
+            },
+            finalizeReport(inc, form) {
+                form.reset();
+                this.showToast(`Incident ${inc.id} submitted successfully.`, 'success');
+            },
+            // --- DASHBOARD (ADMIN) ---
+            initDashboard() {
+                if(!appState.isAdmin) return;
+                
+                document.getElementById('dash-total').innerText = appState.incidents.length;
+                document.getElementById('dash-critical').innerText = appState.incidents.filter(i=>i.type.includes('Fraud')||i.type.includes('Phishing')).length;
+                document.getElementById('dash-resolved').innerText = appState.incidents.filter(i=>i.status==='RESOLVED').length;
+                this.renderTable();
+                this.renderCharts();
+            },
+            renderTable() {
+                const tbody = document.getElementById('dash-table');
+                const empty = document.getElementById('dash-empty');
+                if(appState.incidents.length === 0) {
+                    tbody.innerHTML = '';
+                    empty.style.display = 'block';
+                    return;
+                }
+                empty.style.display = 'none';
+                
+                tbody.innerHTML = appState.incidents.map((inc, idx) => `
+                    <tr>
+                        <td style="font-family:var(--font-mono); color:var(--primary);">${inc.id}</td>
+                        <td>${inc.date}</td>
+                        <td><span class="badge badge-info">${inc.type}</span></td>
+                        <td>${inc.name}</td>
+                        <td><span class="badge ${inc.status==='RESOLVED'?'badge-success':(inc.status==='NEW'?'badge-danger':'badge-warning')}">${inc.status}</span></td>
+                        <td>
+                            ${inc.status !== 'RESOLVED' ? `<button class="btn btn-outline" style="padding:0.25rem 0.5rem; font-size:0.75rem;" onclick="app.resolveIncident(${idx})">Resolve</button>` : '<i class="fa-solid fa-check text-success"></i>'}
+                        </td>
+                    </tr>
+                `).join('');
+            },
+            resolveIncident(idx) {
+                appState.incidents[idx].status = 'RESOLVED';
+                localStorage.setItem('cg_incidents', JSON.stringify(appState.incidents));
+                this.initDashboard();
+                this.showToast('Incident marked as resolved.', 'success');
+            },
+            renderCharts() {
+                if(appState.charts.trend) appState.charts.trend.destroy();
+                if(appState.charts.dist) appState.charts.dist.destroy();
+                Chart.defaults.color = '#94a3b8';
+                Chart.defaults.font.family = "'Inter', sans-serif";
+                const ctxT = document.getElementById('chart-trend').getContext('2d');
+                appState.charts.trend = new Chart(ctxT, {
+                    type: 'line',
+                    data: { labels: ['Mon','Tue','Wed','Thu','Fri','Sat','Sun'], datasets: [{ label: 'Incidents', data: [5,8,12,7,15,10,appState.incidents.length], borderColor: '#3b82f6', backgroundColor: 'rgba(59,130,246,0.1)', fill: true, tension: 0.4 }] },
+                    options: { responsive: true, maintainAspectRatio: false, scales: { x: { grid: { color: 'rgba(255,255,255,0.05)' } }, y: { grid: { color: 'rgba(255,255,255,0.05)' } } } }
+                });
+                const ctxD = document.getElementById('chart-dist').getContext('2d');
+                appState.charts.dist = new Chart(ctxD, {
+                    type: 'doughnut',
+                    data: { labels: ['Phishing', 'UPI', 'Jobs'], datasets: [{ data: [40, 35, 25], backgroundColor: ['#ef4444', '#f59e0b', '#3b82f6'], borderWidth: 0 }] },
+                    options: { responsive: true, maintainAspectRatio: false }
+                });
+            },
+            // --- NEWS & ALERTS ---
+            async fetchNews() {
+                const grid = document.getElementById('news-grid');
+                const statusIcon = document.getElementById('news-status-icon');
+                const statusText = document.getElementById('news-status-text');
+                const statusContainer = document.getElementById('news-status-container');
+                const categoriesContainer = document.getElementById('news-filters-container');
+                
+                // Set Loading State
+                statusIcon.className = "fa-solid fa-circle-notch fa-spin";
+                statusText.innerText = "Connecting to Cyber Intelligence...";
+                statusContainer.style.borderColor = "var(--primary)";
+                statusContainer.style.color = "var(--primary)";
+
+                try {
+                    // Using a reliable, free RSS to JSON API for hackathon context as requested, avoiding CORS issues.
+                    // A public feed (The Hacker News) is used to ensure real, live data.
+                    const response = await fetch('https://api.rss2json.com/v1/api.json?rss_url=https%3A%2F%2Ffeeds.feedburner.com%2FTheHackersNews');
+                    
+                    if (!response.ok) throw new Error('Network response was not ok');
+                    const data = await response.json();
+                    
+                    if (data.status === 'ok' && data.items.length > 0) {
+                        grid.innerHTML = data.items.map(n => {
+                            // Extract a short description, removing HTML tags
+                            let shortDesc = n.description.replace(/<[^>]*>?/gm, '');
+                            shortDesc = shortDesc.substring(0, 100) + '...';
+                            
+                            // Determine category (basic heuristic)
+                            let cat = "CYBERSECURITY";
+                            const titleLower = n.title.toLowerCase();
+                            if(titleLower.includes('ransomware')) cat = "RANSOMWARE";
+                            else if(titleLower.includes('phishing') || titleLower.includes('scam')) cat = "PHISHING";
+                            else if(titleLower.includes('breach') || titleLower.includes('leak')) cat = "DATA BREACH";
+                            else if(titleLower.includes('vulnerability') || titleLower.includes('flaw') || titleLower.includes('bug')) cat = "VULNERABILITY";
+                            else if(titleLower.includes('malware') || titleLower.includes('trojan')) cat = "MALWARE";
+                            else if(titleLower.includes('ai') || titleLower.includes('artificial intelligence')) cat = "AI SECURITY";
+
+                            // Format Date
+                            const pubDate = new Date(n.pubDate).toLocaleDateString(undefined, { month: 'short', day: 'numeric', year: 'numeric' });
+
+                            return `
+                                <div class="glass-panel news-card" style="display:flex; flex-direction:column; height: 100%;">
+                                    <div class="news-meta"><span><i class="fa-solid fa-globe text-primary"></i> ${data.feed.title || 'The Hacker News'}</span><span>${pubDate}</span></div>
+                                    <h3 class="news-title" style="flex-grow:0;">${n.title}</h3>
+                                    <p style="font-size:0.85rem; color:var(--text-muted); margin-bottom:1rem; flex-grow:1;">${shortDesc}</p>
+                                    <div style="display:flex; justify-content:space-between; align-items:center; margin-top:auto;">
+                                        <span class="badge badge-info">${cat}</span>
+                                        <a href="${n.link}" target="_blank" rel="noopener noreferrer" class="btn btn-outline" style="padding: 0.4rem 1rem; font-size:0.75rem;">Read Article</a>
+                                    </div>
+                                </div>
+                            `;
+                        }).join('');
+
+                        // Set Success State
+                        statusIcon.className = "fa-solid fa-check-circle";
+                        const timeNow = new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
+                        statusText.innerHTML = `<b>LIVE</b> &bull; Last updated: ${timeNow}`;
+                        statusContainer.style.borderColor = "var(--success)";
+                        statusContainer.style.color = "var(--success)";
+                        
+                        // Render categories based on fetched data
+                        if(categoriesContainer) {
+                             const cats = ['ALL', 'CYBERSECURITY', 'RANSOMWARE', 'PHISHING', 'DATA BREACH', 'VULNERABILITY', 'MALWARE', 'AI SECURITY'];
+                             categoriesContainer.innerHTML = cats.map(c => 
+                                 `<button class="btn btn-outline filter-btn ${c === 'ALL' ? 'active' : ''}">${c}</button>`
+                             ).join('');
+                        }
+
+                    } else {
+                        throw new Error('No articles returned from feed.');
+                    }
+                } catch (error) {
+                    console.error('Error fetching news:', error);
+                    // Set Error State
+                    statusIcon.className = "fa-solid fa-triangle-exclamation";
+                    statusText.innerText = "Live feed temporarily unavailable (Network/API Error)";
+                    statusContainer.style.borderColor = "var(--danger)";
+                    statusContainer.style.color = "var(--danger)";
+                    grid.innerHTML = `<div style="grid-column: 1 / -1; text-align: center; color: var(--text-muted); padding: 2rem;">Unable to retrieve live news at this time. Please check your connection or try refreshing.</div>`;
+                }
+            },
+
+            async refreshNews() {
+                const btn = document.getElementById('btn-news-refresh');
+                btn.disabled = true;
+                btn.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin"></i> Refreshing...';
+                await this.fetchNews();
+                btn.disabled = false;
+                btn.innerHTML = '<i class="fa-solid fa-rotate-right"></i> Refresh';
+            },
+
+            renderAlerts() {
+                const alerts = [
+                    { title: "TRAI Impersonation Calls", level: "CRITICAL", desc: "Scammers claiming mobile numbers will be blocked." },
+                    { title: "Fake FedEx Parcels", level: "HIGH", desc: "SMS links requesting customs fee payment via UPI." },
+                    { title: "Wedding Invite APKs", level: "CRITICAL", desc: "Malicious apps sent via WhatsApp stealing OTPs." }
+                ];
+                document.getElementById('alerts-grid').innerHTML = alerts.map(a => `
+                    <div class="glass-panel alert-card" style="padding:1.5rem; border-left-color: ${a.level==='CRITICAL'?'var(--danger)':'var(--warning)'}">
+                        <div style="display:flex; justify-content:space-between; margin-bottom:1rem;">
+                            <h4 style="margin:0;">${a.title}</h4>
+                            <span class="badge ${a.level==='CRITICAL'?'badge-danger':'badge-warning'}">${a.level}</span>
+                        </div>
+                        <p style="font-size:0.85rem; color:var(--text-muted);">${a.desc}</p>
+                    </div>
+                `).join('');
+            },
+            generateMap() {
+                const map = document.getElementById('map-container');
+                for(let i=0; i<8; i++) {
+                    const dot = document.createElement('div');
+                    dot.style.cssText = `position:absolute; width:10px; height:10px; background:var(--danger); border-radius:50%; top:${20+Math.random()*60}%; left:${20+Math.random()*60}%; box-shadow:0 0 15px var(--danger); animation:pulse 2s infinite ${Math.random()}s;`;
+                    map.appendChild(dot);
+                }
+            },
+            // --- SECURITY CENTER & QUIZ ---
+            checkPassword() {
+                const p = document.getElementById('pwd-input').value;
+                const len = p.length >= 8;
+                const up = /[A-Z]/.test(p);
+                const num = /[0-9]/.test(p);
+                const spec = /[!@#$%^&*]/.test(p);
+                
+                const updateUi = (id, val) => {
+                    const el = document.getElementById(id);
+                    if(val) { el.style.color = 'var(--success)'; el.innerHTML = el.innerHTML.replace('xmark text-danger', 'check text-success'); }
+                    else { el.style.color = 'var(--text-muted)'; el.innerHTML = el.innerHTML.replace('check text-success', 'xmark text-danger'); }
+                };
+                
+                updateUi('req-len', len); updateUi('req-up', up); updateUi('req-num', num); updateUi('req-spec', spec);
+                
+                let s = (len?25:0) + (up?25:0) + (num?25:0) + (spec?25:0);
+                const bar = document.getElementById('pwd-bar');
+                const lbl = document.getElementById('pwd-label');
+                bar.style.width = s + '%';
+                
+                if(s <= 25) { bar.style.background = 'var(--danger)'; lbl.innerText = 'Weak'; lbl.style.color = 'var(--danger)'; }
+                else if(s <= 50) { bar.style.background = 'var(--warning)'; lbl.innerText = 'Fair'; lbl.style.color = 'var(--warning)'; }
+                else if(s <= 75) { bar.style.background = 'var(--info)'; lbl.innerText = 'Good'; lbl.style.color = 'var(--info)'; }
+                else { bar.style.background = 'var(--success)'; lbl.innerText = 'Strong'; lbl.style.color = 'var(--success)'; }
+            },
+            openQuiz() {
+                appState.quiz.current = 0; appState.quiz.score = 0;
+                document.getElementById('quiz-result').style.display = 'none';
+                document.getElementById('quiz-ui').style.display = 'block';
+                this.renderQuizQ();
+                this.openModal('modal-quiz');
+            },
+            renderQuizQ() {
+                const q = appState.quiz.questions[appState.quiz.current];
+                document.getElementById('quiz-progress').innerText = `${appState.quiz.current + 1}/${appState.quiz.questions.length}`;
+                document.getElementById('quiz-q').innerText = q.q;
+                document.getElementById('quiz-opts').innerHTML = q.opts.map((opt, i) => 
+                    `<button class="btn btn-outline" style="justify-content:flex-start; text-align:left;" onclick="app.answerQuiz(${i})">${opt}</button>`
+                ).join('');
+                document.getElementById('quiz-feedback').style.display = 'none';
+                document.getElementById('quiz-next').style.display = 'none';
+            },
+            answerQuiz(idx) {
+                const q = appState.quiz.questions[appState.quiz.current];
+                const btns = document.getElementById('quiz-opts').querySelectorAll('button');
+                btns.forEach(b => b.onclick = null);
+                
+                const fb = document.getElementById('quiz-feedback');
+                fb.style.display = 'block';
+                
+                if(idx === q.a) {
+                    appState.quiz.score++;
+                    btns[idx].style.background = 'rgba(16,185,129,0.2)'; btns[idx].style.borderColor = 'var(--success)';
+                    fb.style.background = 'rgba(16,185,129,0.1)'; fb.innerHTML = `<b style="color:var(--success)">Correct!</b><br>${q.exp}`;
+                } else {
+                    btns[idx].style.background = 'rgba(239,68,68,0.2)'; btns[idx].style.borderColor = 'var(--danger)';
+                    btns[q.a].style.background = 'rgba(16,185,129,0.2)'; btns[q.a].style.borderColor = 'var(--success)';
+                    fb.style.background = 'rgba(239,68,68,0.1)'; fb.innerHTML = `<b style="color:var(--danger)">Incorrect.</b><br>${q.exp}`;
+                }
+                document.getElementById('quiz-next').style.display = 'block';
+            },
+            nextQuiz() {
+                appState.quiz.current++;
+                if(appState.quiz.current < appState.quiz.questions.length) this.renderQuizQ();
+                else {
+                    document.getElementById('quiz-ui').style.display = 'none';
+                    document.getElementById('quiz-result').style.display = 'block';
+                    document.getElementById('quiz-score').innerText = appState.quiz.score;
+                }
+            },
+            // --- AUTH, MODALS, UTILS ---
+            toggleLogin() { this.openModal('modal-login'); },
+            
+            handleLogin(e) {
+                e.preventDefault();
+                const u = document.getElementById('login-user').value;
+                const p = document.getElementById('login-pwd').value;
+                if(u === CONFIG.devUser && p === CONFIG.devPass) {
+                    appState.isAdmin = true;
+                    localStorage.setItem('cg_admin', 'true');
+                    this.enableAdminUI();
+                    this.closeModal('modal-login');
+                    this.navigate('dashboard');
+                    this.showToast('SOC Access Granted', 'success');
+                } else this.showToast('Invalid Credentials', 'error');
+                e.target.reset();
+            },
+            enableAdminUI() {
+                document.getElementById('btn-login').style.display = 'none';
+                document.getElementById('nav-dash').style.display = 'block';
+            },
+            logout() {
+                appState.isAdmin = false;
+                localStorage.removeItem('cg_admin');
+                document.getElementById('btn-login').style.display = 'block';
+                document.getElementById('nav-dash').style.display = 'none';
+                this.navigate('home');
+                this.showToast('Logged out.', 'info');
+            },
+            openModal(id) {
+                if(appState.info[id]) {
+                    document.getElementById('info-title').innerHTML = appState.info[id].title;
+                    document.getElementById('info-body').innerHTML = appState.info[id].body;
+                    document.getElementById('modal-info').classList.add('active');
+                } else {
+                    document.getElementById(id).classList.add('active');
+                }
+            },
+            closeModal(id) { document.getElementById(id).classList.remove('active'); },
+            showToast(msg, type='info') {
+                const c = document.getElementById('toast-container');
+                const t = document.createElement('div');
+                t.className = 'toast';
+                if(type==='success') t.style.borderLeftColor = 'var(--success)';
+                if(type==='error') t.style.borderLeftColor = 'var(--danger)';
+                t.innerHTML = `<div>${msg}</div>`;
+                c.appendChild(t);
+                setTimeout(() => { t.classList.add('fade-out'); setTimeout(() => t.remove(), 300); }, 3000);
+            },
+            // --- 3D & CANVAS EFFECTS ---
+            initCanvasBackground() {
+                const canvas = document.getElementById('cyber-bg');
+                const ctx = canvas.getContext('2d');
+                let w, h, particles = [];
+                
+                const resize = () => { w = canvas.width = window.innerWidth; h = canvas.height = window.innerHeight; };
+                window.addEventListener('resize', resize); resize();
+                
+                class Particle {
+                    constructor() { this.x = Math.random()*w; this.y = Math.random()*h; this.vx = (Math.random()-0.5)*0.5; this.vy = (Math.random()-0.5)*0.5; }
+                    update() {
+                        this.x += this.vx; this.y += this.vy;
+                        if(this.x < 0 || this.x > w) this.vx *= -1;
+                        if(this.y < 0 || this.y > h) this.vy *= -1;
+                    }
+                    draw() { ctx.fillStyle = 'rgba(56, 189, 248, 0.5)'; ctx.beginPath(); ctx.arc(this.x, this.y, 1.5, 0, Math.PI*2); ctx.fill(); }
+                }
+                
+                for(let i=0; i<50; i++) particles.push(new Particle());
+                
+                const animate = () => {
+                    ctx.clearRect(0, 0, w, h);
+                    for(let i=0; i<particles.length; i++) {
+                        particles[i].update(); particles[i].draw();
+                        for(let j=i; j<particles.length; j++) {
+                            const dx = particles[i].x - particles[j].x, dy = particles[i].y - particles[j].y;
+                            const dist = Math.sqrt(dx*dx + dy*dy);
+                            if(dist < 150) {
+                                ctx.beginPath(); ctx.strokeStyle = `rgba(56, 189, 248, ${0.1 - dist/1500})`;
+                                ctx.lineWidth = 1; ctx.moveTo(particles[i].x, particles[i].y); ctx.lineTo(particles[j].x, particles[j].y); ctx.stroke();
+                            }
+                        }
+                    }
+                    requestAnimationFrame(animate);
+                };
+                animate();
+            },
+            init3DShield() {
+                const visualArea = document.getElementById('hero-3d');
+                const shieldObj = document.getElementById('shield-obj');
+                
+                if(window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+                visualArea.addEventListener('mousemove', (e) => {
+                    const rect = visualArea.getBoundingClientRect();
+                    const x = e.clientX - rect.left - rect.width/2;
+                    const y = e.clientY - rect.top - rect.height/2;
+                    shieldObj.style.transform = `rotateY(${x * 0.05}deg) rotateX(${-y * 0.05}deg)`;
+                });
+                visualArea.addEventListener('mouseleave', () => {
+                    shieldObj.style.transform = `rotateY(0deg) rotateX(0deg)`;
+                });
+            }
+        };
+        // Initialize App
+        document.addEventListener('DOMContentLoaded', () => app.init());
+    </script>
+</body>
+</html>
 
