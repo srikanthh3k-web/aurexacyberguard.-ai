@@ -16,7 +16,7 @@
 :root{
     --bg:#050812;
     --bg2:#080d1a;
-    --card:rgba(12,20,38,.78);
+    --card:rgba(12,20,38,.80);
     --border:rgba(86,120,180,.25);
     --text:#eef5ff;
     --muted:#8d9bb5;
@@ -59,7 +59,7 @@ button{
     z-index:-1;
 }
 
-/* NAVBAR */
+/* ================= NAVBAR ================= */
 
 .navbar{
     position:fixed;
@@ -71,7 +71,7 @@ button{
     align-items:center;
     justify-content:space-between;
     padding:0 5%;
-    background:rgba(5,8,18,.82);
+    background:rgba(5,8,18,.85);
     backdrop-filter:blur(18px);
     border-bottom:1px solid var(--border);
     z-index:1000;
@@ -100,14 +100,14 @@ button{
 .nav-links{
     display:flex;
     align-items:center;
-    gap:6px;
+    gap:4px;
 }
 
 .nav-links button{
     background:transparent;
     border:0;
     color:var(--muted);
-    padding:10px 12px;
+    padding:9px 11px;
     border-radius:9px;
     transition:.25s;
 }
@@ -119,7 +119,7 @@ button{
 }
 
 .admin-btn{
-    border:1px solid rgba(166,108,255,.5)!important;
+    border:1px solid rgba(166,108,255,.45)!important;
     color:#c7a9ff!important;
 }
 
@@ -127,7 +127,7 @@ button{
     display:none;
 }
 
-/* GENERAL */
+/* ================= COMMON ================= */
 
 section{
     padding:100px 7%;
@@ -141,12 +141,12 @@ section{
 
 .section-title{
     text-align:center;
-    margin-bottom:50px;
+    margin-bottom:45px;
 }
 
 .section-title h2{
     font-size:38px;
-    margin-bottom:12px;
+    margin-bottom:10px;
 }
 
 .section-title h2 span{
@@ -165,7 +165,40 @@ section{
     box-shadow:0 15px 50px rgba(0,0,0,.2);
 }
 
-/* HERO */
+.btn{
+    border:0;
+    border-radius:10px;
+    padding:13px 20px;
+    color:#fff;
+    background:linear-gradient(135deg,var(--blue),#2455d9);
+    box-shadow:0 8px 25px rgba(57,119,255,.22);
+    transition:.25s;
+}
+
+.btn:hover{
+    transform:translateY(-2px);
+}
+
+.btn-outline{
+    background:transparent;
+    border:1px solid var(--border);
+    box-shadow:none;
+}
+
+.btn-cyan{
+    background:linear-gradient(135deg,#00bcd4,#0077ff);
+}
+
+.btn-danger{
+    background:linear-gradient(135deg,#ff416c,#d91c45);
+}
+
+.btn-green{
+    background:linear-gradient(135deg,#00b97a,#00ff9d);
+    color:#00150e;
+}
+
+/* ================= HERO ================= */
 
 .hero{
     min-height:100vh;
@@ -231,36 +264,6 @@ section{
     flex-wrap:wrap;
 }
 
-.btn{
-    border:0;
-    border-radius:10px;
-    padding:13px 20px;
-    color:white;
-    background:linear-gradient(135deg,var(--blue),#2455d9);
-    box-shadow:0 8px 25px rgba(57,119,255,.22);
-    transition:.25s;
-}
-
-.btn:hover{
-    transform:translateY(-2px);
-    box-shadow:0 12px 30px rgba(57,119,255,.3);
-}
-
-.btn-outline{
-    background:transparent;
-    border:1px solid var(--border);
-    color:var(--text);
-    box-shadow:none;
-}
-
-.btn-cyan{
-    background:linear-gradient(135deg,#00bcd4,#0077ff);
-}
-
-.btn-danger{
-    background:linear-gradient(135deg,#ff416c,#d91c45);
-}
-
 .hero-stats{
     display:flex;
     gap:35px;
@@ -276,12 +279,13 @@ section{
     font-size:12px;
 }
 
-/* SHIELD */
+/* ================= SHIELD ================= */
 
 .shield-area{
     display:flex;
     justify-content:center;
     align-items:center;
+    position:relative;
 }
 
 .shield{
@@ -301,20 +305,16 @@ section{
         13% 61%,
         9% 14%
     );
-    background:linear-gradient(145deg,rgba(0,234,255,.12),rgba(57,119,255,.05));
+    background:linear-gradient(
+        145deg,
+        rgba(0,234,255,.12),
+        rgba(57,119,255,.05)
+    );
     border:2px solid rgba(0,234,255,.7);
     box-shadow:
         0 0 35px rgba(0,234,255,.2),
         inset 0 0 40px rgba(0,234,255,.06);
     animation:shieldFloat 4s ease-in-out infinite;
-}
-
-.shield::before{
-    content:"";
-    position:absolute;
-    inset:18px;
-    clip-path:inherit;
-    border:1px solid rgba(0,234,255,.4);
 }
 
 .shield-core{
@@ -340,7 +340,7 @@ section{
     to{transform:rotate(360deg);}
 }
 
-/* SCANNER */
+/* ================= SCANNER ================= */
 
 .scanner-grid{
     display:grid;
@@ -405,7 +405,6 @@ textarea{
 textarea:focus,
 select:focus{
     border-color:rgba(0,234,255,.55);
-    box-shadow:0 0 0 3px rgba(0,234,255,.06);
 }
 
 .scan-result{
@@ -434,7 +433,6 @@ select:focus{
     display:grid;
     place-items:center;
     border:7px solid var(--green);
-    box-shadow:0 0 30px rgba(0,255,157,.18);
 }
 
 .risk-number{
@@ -474,7 +472,7 @@ select:focus{
     font-size:12px;
 }
 
-/* VT */
+/* ================= VIRUSTOTAL ================= */
 
 .vt-status{
     margin-top:15px;
@@ -499,6 +497,7 @@ select:focus{
     display:grid;
     grid-template-columns:repeat(4,1fr);
     gap:7px;
+    margin-top:10px;
 }
 
 .vt-item{
@@ -518,7 +517,196 @@ select:focus{
     color:var(--muted);
 }
 
-/* AI DEFENSE */
+/* ================= REAL-TIME AI DEFENSE ================= */
+
+.live-defense{
+    margin-bottom:25px;
+    padding:20px;
+    border:1px solid rgba(0,234,255,.22);
+    background:
+        linear-gradient(
+            135deg,
+            rgba(0,234,255,.05),
+            rgba(166,108,255,.04)
+        );
+}
+
+.live-header{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:15px;
+    margin-bottom:18px;
+}
+
+.live-title{
+    display:flex;
+    align-items:center;
+    gap:10px;
+}
+
+.live-dot{
+    width:10px;
+    height:10px;
+    border-radius:50%;
+    background:#667;
+}
+
+.live-dot.active{
+    background:var(--green);
+    box-shadow:0 0 15px var(--green);
+    animation:pulse 1s infinite;
+}
+
+.live-dot.danger{
+    background:var(--red);
+    box-shadow:0 0 15px var(--red);
+}
+
+@keyframes pulse{
+    50%{
+        opacity:.35;
+        transform:scale(.7);
+    }
+}
+
+.live-grid{
+    display:grid;
+    grid-template-columns:1.1fr .9fr;
+    gap:20px;
+}
+
+.live-visual{
+    min-height:230px;
+    border:1px solid var(--border);
+    border-radius:15px;
+    background:rgba(0,0,0,.22);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    position:relative;
+    overflow:hidden;
+}
+
+.wave{
+    width:100%;
+    height:130px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:5px;
+}
+
+.wave span{
+    width:4px;
+    height:15px;
+    border-radius:5px;
+    background:var(--cyan);
+    transition:.1s;
+}
+
+.live-monitoring .wave span{
+    animation:wave 1s ease-in-out infinite alternate;
+}
+
+@keyframes wave{
+    from{height:12px;}
+    to{height:90px;}
+}
+
+.wave span:nth-child(2){animation-delay:.08s}
+.wave span:nth-child(3){animation-delay:.16s}
+.wave span:nth-child(4){animation-delay:.24s}
+.wave span:nth-child(5){animation-delay:.32s}
+.wave span:nth-child(6){animation-delay:.40s}
+.wave span:nth-child(7){animation-delay:.48s}
+.wave span:nth-child(8){animation-delay:.56s}
+.wave span:nth-child(9){animation-delay:.64s}
+.wave span:nth-child(10){animation-delay:.72s}
+.wave span:nth-child(11){animation-delay:.80s}
+.wave span:nth-child(12){animation-delay:.88s}
+
+.live-stats{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:10px;
+}
+
+.live-stat{
+    padding:15px;
+    border:1px solid var(--border);
+    border-radius:11px;
+    background:rgba(255,255,255,.025);
+}
+
+.live-stat span{
+    color:var(--muted);
+    font-size:10px;
+}
+
+.live-stat b{
+    display:block;
+    margin-top:6px;
+    font-size:22px;
+}
+
+.live-risk{
+    margin-top:15px;
+    padding:15px;
+    border-radius:11px;
+    border:1px solid var(--border);
+}
+
+.risk-progress{
+    height:10px;
+    margin-top:10px;
+    background:rgba(255,255,255,.06);
+    border-radius:20px;
+    overflow:hidden;
+}
+
+.risk-progress div{
+    height:100%;
+    width:0%;
+    transition:.5s;
+    background:linear-gradient(
+        90deg,
+        var(--green),
+        var(--yellow),
+        var(--red)
+    );
+}
+
+.live-warning{
+    margin-top:15px;
+    padding:14px;
+    border-radius:10px;
+    display:none;
+    border:1px solid rgba(255,65,108,.4);
+    background:rgba(255,65,108,.08);
+    color:#ff9db3;
+}
+
+.live-warning.show{
+    display:block;
+}
+
+.keyword-box{
+    margin-top:15px;
+}
+
+.keyword{
+    display:inline-block;
+    margin:4px;
+    padding:5px 8px;
+    border-radius:6px;
+    font-size:10px;
+    background:rgba(255,65,108,.09);
+    color:#ff9db3;
+    border:1px solid rgba(255,65,108,.2);
+}
+
+/* ================= AI MEDIA ================= */
 
 .ai-grid{
     display:grid;
@@ -548,12 +736,6 @@ select:focus{
     padding:30px 20px;
     text-align:center;
     background:rgba(0,234,255,.025);
-    transition:.2s;
-}
-
-.upload:hover{
-    border-color:var(--cyan);
-    background:rgba(0,234,255,.05);
 }
 
 .upload-icon{
@@ -598,7 +780,12 @@ select:focus{
     height:100%;
     width:0;
     transition:1s;
-    background:linear-gradient(90deg,var(--green),var(--yellow),var(--red));
+    background:linear-gradient(
+        90deg,
+        var(--green),
+        var(--yellow),
+        var(--red)
+    );
 }
 
 .ai-indicators{
@@ -617,7 +804,7 @@ select:focus{
     line-height:1.6;
 }
 
-/* NEWS */
+/* ================= NEWS ================= */
 
 .news-grid{
     display:grid;
@@ -661,7 +848,7 @@ select:focus{
     font-size:12px;
 }
 
-/* ALERTS */
+/* ================= ALERTS ================= */
 
 .alerts-grid{
     display:grid;
@@ -693,7 +880,7 @@ select:focus{
     font-size:12px;
 }
 
-/* REPORT */
+/* ================= REPORT ================= */
 
 .report-card{
     max-width:850px;
@@ -711,7 +898,7 @@ select:focus{
     grid-column:1/-1;
 }
 
-/* SECURITY */
+/* ================= SECURITY ================= */
 
 .security-grid{
     display:grid;
@@ -739,11 +926,11 @@ select:focus{
     line-height:1.6;
 }
 
-/* SOC */
+/* ================= SOC ================= */
 
 .soc-top{
     display:grid;
-    grid-template-columns:repeat(4,1fr);
+    grid-template-columns:repeat(5,1fr);
     gap:15px;
     margin-bottom:20px;
 }
@@ -754,7 +941,7 @@ select:focus{
 
 .soc-stat span{
     color:var(--muted);
-    font-size:11px;
+    font-size:10px;
 }
 
 .soc-stat h3{
@@ -822,7 +1009,11 @@ th{
     width:75%;
     min-height:5px;
     border-radius:7px 7px 0 0;
-    background:linear-gradient(180deg,var(--cyan),var(--blue));
+    background:linear-gradient(
+        180deg,
+        var(--cyan),
+        var(--blue)
+    );
 }
 
 .bar-label{
@@ -831,7 +1022,7 @@ th{
     margin-top:8px;
 }
 
-/* MODAL */
+/* ================= MODALS ================= */
 
 .modal-overlay{
     position:fixed;
@@ -864,17 +1055,13 @@ th{
     font-size:25px;
 }
 
-.modal h2{
-    margin-bottom:20px;
-}
-
 .login-error{
     color:var(--red);
     font-size:12px;
     margin-top:8px;
 }
 
-/* TOAST */
+/* ================= TOAST ================= */
 
 .toast{
     position:fixed;
@@ -897,7 +1084,7 @@ th{
     opacity:1;
 }
 
-/* FOOTER */
+/* ================= FOOTER ================= */
 
 footer{
     border-top:1px solid var(--border);
@@ -911,11 +1098,13 @@ footer strong{
     color:var(--cyan);
 }
 
-/* RESPONSIVE */
+/* ================= RESPONSIVE ================= */
 
-@media(max-width:1000px){
+@media(max-width:1050px){
+
     .hero-grid,
     .scanner-grid,
+    .live-grid,
     .ai-grid,
     .soc-layout{
         grid-template-columns:1fr;
@@ -930,11 +1119,12 @@ footer strong{
     }
 
     .soc-top{
-        grid-template-columns:1fr 1fr;
+        grid-template-columns:repeat(3,1fr);
     }
 }
 
 @media(max-width:760px){
+
     .navbar{
         padding:0 18px;
     }
@@ -1003,6 +1193,10 @@ footer strong{
     .vt-grid{
         grid-template-columns:1fr 1fr;
     }
+
+    .live-stats{
+        grid-template-columns:1fr 1fr;
+    }
 }
 </style>
 </head>
@@ -1011,36 +1205,84 @@ footer strong{
 
 <canvas id="particles"></canvas>
 
-<!-- NAVBAR -->
+<!-- =========================================================
+     NAVBAR
+========================================================= -->
 
 <nav class="navbar">
+
     <div class="logo">
         <div class="logo-icon">A</div>
         <span>AUREXA</span>
     </div>
 
     <div class="nav-links" id="navLinks">
-        <button onclick="app.navigate('home')">Home</button>
-        <button onclick="app.navigate('scanner')">Threat Scanner</button>
-        <button onclick="app.navigate('ai-defense')">AI Voice & Deepfake</button>
-        <button onclick="app.navigate('news')">Cyber News</button>
-        <button onclick="app.navigate('alerts')">Alerts</button>
-        <button onclick="app.navigate('report')">Report Fraud</button>
-        <button onclick="app.navigate('security')">Security Center</button>
-        <button id="socNav" onclick="app.navigate('soc')" style="display:none;">SOC</button>
-        <button class="admin-btn" onclick="app.toggleLogin()">Admin</button>
+
+        <button onclick="app.navigate('home')">
+            Home
+        </button>
+
+        <button onclick="app.navigate('scanner')">
+            Threat Scanner
+        </button>
+
+        <button onclick="app.navigate('ai-defense')">
+            AI Voice & Deepfake
+        </button>
+
+        <button onclick="app.navigate('news')">
+            Cyber News
+        </button>
+
+        <button onclick="app.navigate('alerts')">
+            Alerts
+        </button>
+
+        <button onclick="app.navigate('report')">
+            Report Fraud
+        </button>
+
+        <button onclick="app.navigate('security')">
+            Security Center
+        </button>
+
+        <button
+            id="socNav"
+            onclick="app.navigate('soc')"
+            style="display:none;"
+        >
+            SOC
+        </button>
+
+        <button
+            class="admin-btn"
+            onclick="app.toggleLogin()"
+        >
+            Admin
+        </button>
+
     </div>
 
-    <button class="mobile-menu" onclick="app.toggleMobile()">☰</button>
+    <button
+        class="mobile-menu"
+        onclick="app.toggleMobile()"
+    >
+        ☰
+    </button>
+
 </nav>
 
 
-<!-- HERO -->
+<!-- =========================================================
+     HERO
+========================================================= -->
 
 <section class="hero" id="home">
+
     <div class="hero-grid">
 
         <div>
+
             <div class="badge">
                 <span class="badge-dot"></span>
                 AI-POWERED CYBER FRAUD PROTECTION
@@ -1053,22 +1295,31 @@ footer strong{
             </h1>
 
             <p>
-                AUREXA CyberGuard AI helps detect phishing, malicious URLs,
-                social engineering, UPI fraud, AI voice scams and deepfake-based
-                cyber threats before they cause damage.
+                AUREXA CyberGuard AI protects users against
+                phishing, malicious URLs, social engineering,
+                UPI fraud, AI voice scams and deepfake attacks.
             </p>
 
             <div class="hero-buttons">
-                <button class="btn btn-cyan" onclick="app.navigate('scanner')">
+
+                <button
+                    class="btn btn-cyan"
+                    onclick="app.navigate('scanner')"
+                >
                     Start Threat Scan
                 </button>
 
-                <button class="btn btn-outline" onclick="app.navigate('ai-defense')">
-                    AI Media Defense
+                <button
+                    class="btn btn-outline"
+                    onclick="app.navigate('ai-defense')"
+                >
+                    Real-Time AI Defense
                 </button>
+
             </div>
 
             <div class="hero-stats">
+
                 <div class="stat">
                     <h3>24/7</h3>
                     <span>Protection</span>
@@ -1081,104 +1332,189 @@ footer strong{
 
                 <div class="stat">
                     <h3>LIVE</h3>
-                    <span>Threat Intelligence</span>
+                    <span>Threat Monitoring</span>
                 </div>
+
             </div>
+
         </div>
 
+
         <div class="shield-area">
+
             <div class="scan-ring"></div>
 
             <div class="shield">
-                <div class="shield-core">🛡️</div>
+                <div class="shield-core">
+                    🛡️
+                </div>
             </div>
+
         </div>
 
     </div>
+
 </section>
 
 
-<!-- THREAT SCANNER -->
+<!-- =========================================================
+     THREAT SCANNER
+========================================================= -->
 
 <section id="scanner">
+
     <div class="container">
 
         <div class="section-title">
-            <h2>Threat <span>Scanner</span></h2>
-            <p>Analyze URLs, messages and emails for common cyber-fraud indicators.</p>
+
+            <h2>
+                Threat <span>Scanner</span>
+            </h2>
+
+            <p>
+                Analyze URLs, SMS/WhatsApp messages and emails.
+            </p>
+
         </div>
+
 
         <div class="scanner-grid">
 
             <div class="card scanner-card">
 
                 <div class="tabs">
-                    <button class="tab active" data-type="url" onclick="app.setScannerTab('url')">
+
+                    <button
+                        class="tab active"
+                        data-type="url"
+                        onclick="app.setScannerTab('url')"
+                    >
                         URL Scanner
                     </button>
 
-                    <button class="tab" data-type="message" onclick="app.setScannerTab('message')">
+                    <button
+                        class="tab"
+                        data-type="message"
+                        onclick="app.setScannerTab('message')"
+                    >
                         SMS / WhatsApp
                     </button>
 
-                    <button class="tab" data-type="email" onclick="app.setScannerTab('email')">
+                    <button
+                        class="tab"
+                        data-type="email"
+                        onclick="app.setScannerTab('email')"
+                    >
                         Email
                     </button>
+
                 </div>
+
+
+                <!-- URL -->
 
                 <div id="urlInputBox">
 
                     <div class="input-group">
-                        <label>Website / URL</label>
+
+                        <label>
+                            Website / URL
+                        </label>
+
                         <input
                             id="urlInput"
                             class="input"
                             type="url"
                             placeholder="https://example.com"
                         >
+
                     </div>
 
-                    <button class="btn btn-cyan" onclick="app.analyze('url')">
+                    <button
+                        class="btn btn-cyan"
+                        onclick="app.analyze('url')"
+                    >
                         🔍 Scan with VirusTotal
                     </button>
 
-                    <div class="vt-status" id="vtStatus">
-                        <div class="vt-title">VirusTotal Intelligence</div>
-                        <div id="vtMessage">Waiting for scan...</div>
-                        <div class="vt-grid" id="vtGrid"></div>
+
+                    <div
+                        class="vt-status"
+                        id="vtStatus"
+                    >
+
+                        <div class="vt-title">
+                            VirusTotal Intelligence
+                        </div>
+
+                        <div id="vtMessage">
+                            Waiting for scan...
+                        </div>
+
+                        <div
+                            class="vt-grid"
+                            id="vtGrid"
+                        ></div>
+
                     </div>
 
                 </div>
 
 
-                <div id="messageInputBox" style="display:none;">
+                <!-- MESSAGE -->
+
+                <div
+                    id="messageInputBox"
+                    style="display:none;"
+                >
 
                     <div class="input-group">
-                        <label>Message</label>
+
+                        <label>
+                            Message
+                        </label>
+
                         <textarea
                             id="messageInput"
                             placeholder="Paste suspicious SMS / WhatsApp message here..."
                         ></textarea>
+
                     </div>
 
-                    <button class="btn btn-cyan" onclick="app.analyze('message')">
+                    <button
+                        class="btn btn-cyan"
+                        onclick="app.analyze('message')"
+                    >
                         🔍 Analyze Message
                     </button>
 
                 </div>
 
 
-                <div id="emailInputBox" style="display:none;">
+                <!-- EMAIL -->
+
+                <div
+                    id="emailInputBox"
+                    style="display:none;"
+                >
 
                     <div class="input-group">
-                        <label>Email Content</label>
+
+                        <label>
+                            Email Content
+                        </label>
+
                         <textarea
                             id="emailInput"
                             placeholder="Paste suspicious email content here..."
                         ></textarea>
+
                     </div>
 
-                    <button class="btn btn-cyan" onclick="app.analyze('email')">
+                    <button
+                        class="btn btn-cyan"
+                        onclick="app.analyze('email')"
+                    >
                         🔍 Analyze Email
                     </button>
 
@@ -1187,37 +1523,262 @@ footer strong{
             </div>
 
 
-            <div class="card scan-result" id="scanResult">
+            <!-- RESULT -->
+
+            <div
+                class="card scan-result"
+                id="scanResult"
+            >
 
                 <div class="empty-state">
-                    <div class="empty-icon">🔐</div>
-                    <h3>Ready to Scan</h3>
+
+                    <div class="empty-icon">
+                        🔐
+                    </div>
+
+                    <h3>
+                        Ready to Scan
+                    </h3>
+
                     <p>
-                        Submit a URL, message or email to generate a
-                        real-time risk assessment.
+                        Submit a URL, message or email
+                        to generate a security assessment.
                     </p>
+
                 </div>
 
             </div>
 
         </div>
+
     </div>
+
 </section>
 
 
-<!-- AI VOICE / DEEPFAKE -->
+<!-- =========================================================
+     AI DEFENSE
+========================================================= -->
 
 <section id="ai-defense">
 
     <div class="container">
 
         <div class="section-title">
-            <h2>AI Voice & <span>Deepfake Defense</span></h2>
+
+            <h2>
+                Real-Time AI Voice Scam &
+                <span>Deepfake Defense</span>
+            </h2>
+
             <p>
-                Detect suspicious AI-generated voice and manipulated media
-                during cyber-fraud investigations.
+                Detect suspicious voice calls and manipulated
+                media using the AUREXA AI defense engine.
             </p>
+
         </div>
+
+
+        <!-- =================================================
+             REAL TIME VOICE MONITOR
+        ================================================== -->
+
+        <div class="card live-defense">
+
+            <div class="live-header">
+
+                <div class="live-title">
+
+                    <span
+                        class="live-dot"
+                        id="liveDot"
+                    ></span>
+
+                    <div>
+
+                        <h3>
+                            🎙️ Real-Time AI Voice Scam Defense
+                        </h3>
+
+                        <small
+                            style="color:var(--muted);"
+                            id="liveStatus"
+                        >
+                            Monitoring is stopped
+                        </small>
+
+                    </div>
+
+                </div>
+
+
+                <button
+                    class="btn btn-cyan"
+                    id="voiceMonitorBtn"
+                    onclick="app.toggleVoiceMonitoring()"
+                >
+                    Start Live Monitoring
+                </button>
+
+            </div>
+
+
+            <div class="live-grid">
+
+                <div
+                    class="live-visual"
+                    id="liveVisual"
+                >
+
+                    <div class="wave">
+
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+
+                    </div>
+
+                    <div
+                        style="
+                            position:absolute;
+                            bottom:15px;
+                            color:var(--muted);
+                            font-size:11px;
+                        "
+                        id="micText"
+                    >
+                        Microphone inactive
+                    </div>
+
+                </div>
+
+
+                <div>
+
+                    <div class="live-stats">
+
+                        <div class="live-stat">
+
+                            <span>
+                                VOICE ACTIVITY
+                            </span>
+
+                            <b id="voiceActivity">
+                                0%
+                            </b>
+
+                        </div>
+
+                        <div class="live-stat">
+
+                            <span>
+                                AI RISK
+                            </span>
+
+                            <b id="liveRiskText">
+                                0%
+                            </b>
+
+                        </div>
+
+                        <div class="live-stat">
+
+                            <span>
+                                SCAM SIGNALS
+                            </span>
+
+                            <b id="scamSignals">
+                                0
+                            </b>
+
+                        </div>
+
+                        <div class="live-stat">
+
+                            <span>
+                                MONITOR TIME
+                            </span>
+
+                            <b id="monitorTime">
+                                00:00
+                            </b>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="live-risk">
+
+                        <div
+                            style="
+                                display:flex;
+                                justify-content:space-between;
+                            "
+                        >
+
+                            <span>
+                                Real-Time Risk Score
+                            </span>
+
+                            <b id="liveRiskNumber">
+                                0 / 100
+                            </b>
+
+                        </div>
+
+                        <div class="risk-progress">
+
+                            <div id="liveRiskBar"></div>
+
+                        </div>
+
+                    </div>
+
+
+                    <div
+                        class="live-warning"
+                        id="liveWarning"
+                    >
+
+                        <b>
+                            🚨 HIGH-RISK VOICE SCAM WARNING
+                        </b>
+
+                        <br>
+
+                        <span id="warningText">
+                            Suspicious social-engineering
+                            signals detected.
+                        </span>
+
+                    </div>
+
+
+                    <div
+                        class="keyword-box"
+                        id="keywordBox"
+                    ></div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- =================================================
+             UPLOAD ANALYSIS
+        ================================================== -->
 
         <div class="ai-grid">
 
@@ -1225,18 +1786,27 @@ footer strong{
 
             <div class="card ai-card">
 
-                <h3>🎙️ AI Voice Scam Detection</h3>
+                <h3>
+                    🎙️ AI Voice Scam Analysis
+                </h3>
 
                 <p>
-                    Upload a voice recording received through a suspicious
-                    call, WhatsApp or other communication channel.
+                    Upload a suspicious voice recording
+                    received through a phone call,
+                    WhatsApp or another communication channel.
                 </p>
+
 
                 <div class="upload">
 
-                    <div class="upload-icon">🎧</div>
+                    <div class="upload-icon">
+                        🎧
+                    </div>
 
-                    <label class="file-label" for="voiceFile">
+                    <label
+                        class="file-label"
+                        for="voiceFile"
+                    >
                         Select Voice File
                     </label>
 
@@ -1248,7 +1818,10 @@ footer strong{
                         onchange="app.voiceSelected(this)"
                     >
 
-                    <div class="file-name" id="voiceName">
+                    <div
+                        class="file-name"
+                        id="voiceName"
+                    >
                         No file selected
                     </div>
 
@@ -1256,21 +1829,38 @@ footer strong{
 
                 <br>
 
-                <button class="btn btn-cyan" onclick="app.analyzeVoice()">
+                <button
+                    class="btn btn-cyan"
+                    onclick="app.analyzeVoice()"
+                >
                     Analyze Voice
                 </button>
 
-                <div class="ai-result" id="voiceResult">
 
-                    <b>AI Voice Risk Score</b>
+                <div
+                    class="ai-result"
+                    id="voiceResult"
+                >
+
+                    <b>
+                        AI Voice Risk Score
+                    </b>
 
                     <div class="ai-score">
-                        <div class="ai-score-fill" id="voiceBar"></div>
+
+                        <div
+                            class="ai-score-fill"
+                            id="voiceBar"
+                        ></div>
+
                     </div>
 
                     <div id="voiceScoreText"></div>
 
-                    <div class="ai-indicators" id="voiceIndicators"></div>
+                    <div
+                        class="ai-indicators"
+                        id="voiceIndicators"
+                    ></div>
 
                 </div>
 
@@ -1281,18 +1871,26 @@ footer strong{
 
             <div class="card ai-card">
 
-                <h3>🎥 Deepfake Detection</h3>
+                <h3>
+                    🎥 Deepfake Detection
+                </h3>
 
                 <p>
-                    Upload a suspicious image or video for preliminary
-                    manipulation indicators.
+                    Upload suspicious video or image media
+                    to check preliminary manipulation indicators.
                 </p>
+
 
                 <div class="upload">
 
-                    <div class="upload-icon">🎬</div>
+                    <div class="upload-icon">
+                        🎬
+                    </div>
 
-                    <label class="file-label" for="videoFile">
+                    <label
+                        class="file-label"
+                        for="videoFile"
+                    >
                         Select Media
                     </label>
 
@@ -1304,7 +1902,10 @@ footer strong{
                         onchange="app.videoSelected(this)"
                     >
 
-                    <div class="file-name" id="videoName">
+                    <div
+                        class="file-name"
+                        id="videoName"
+                    >
                         No file selected
                     </div>
 
@@ -1312,21 +1913,38 @@ footer strong{
 
                 <br>
 
-                <button class="btn btn-cyan" onclick="app.analyzeVideo()">
+                <button
+                    class="btn btn-cyan"
+                    onclick="app.analyzeVideo()"
+                >
                     Analyze Deepfake
                 </button>
 
-                <div class="ai-result" id="videoResult">
 
-                    <b>Deepfake Risk Score</b>
+                <div
+                    class="ai-result"
+                    id="videoResult"
+                >
+
+                    <b>
+                        Deepfake Risk Score
+                    </b>
 
                     <div class="ai-score">
-                        <div class="ai-score-fill" id="videoBar"></div>
+
+                        <div
+                            class="ai-score-fill"
+                            id="videoBar"
+                        ></div>
+
                     </div>
 
                     <div id="videoScoreText"></div>
 
-                    <div class="ai-indicators" id="videoIndicators"></div>
+                    <div
+                        class="ai-indicators"
+                        id="videoIndicators"
+                    ></div>
 
                 </div>
 
@@ -1336,11 +1954,14 @@ footer strong{
 
 
         <div class="prototype-note">
+
             ⚠️ <b>Hackathon Prototype:</b>
-            Voice and deepfake analysis in this browser demo uses
-            simulated AI scoring for demonstration. A production version
-            should connect this module to validated deepfake/audio ML models
+            The browser layer demonstrates real-time monitoring,
+            signal detection, risk scoring and alert workflow.
+            For production-grade forensic verification,
+            connect the system to validated audio/deepfake ML models
             through a secure backend.
+
         </div>
 
     </div>
@@ -1348,29 +1969,58 @@ footer strong{
 </section>
 
 
-<!-- CYBER NEWS -->
+<!-- =========================================================
+     NEWS
+========================================================= -->
 
 <section id="news">
 
     <div class="container">
 
         <div class="section-title">
-            <h2>Cyber <span>News</span></h2>
-            <p>Latest cybersecurity headlines and threat intelligence.</p>
+
+            <h2>
+                Cyber <span>News</span>
+            </h2>
+
+            <p>
+                Latest cybersecurity headlines.
+            </p>
+
         </div>
+
 
         <div style="text-align:center;margin-bottom:25px;">
-            <button class="btn btn-outline" onclick="app.fetchNews()">
+
+            <button
+                class="btn btn-outline"
+                onclick="app.fetchNews()"
+            >
                 ↻ Refresh News
             </button>
+
         </div>
 
-        <div class="news-grid" id="newsGrid">
+
+        <div
+            class="news-grid"
+            id="newsGrid"
+        >
 
             <div class="card news-card">
-                <div class="news-source">AUREXA</div>
-                <h3>Loading cybersecurity intelligence...</h3>
-                <p>Fetching latest security news.</p>
+
+                <div class="news-source">
+                    AUREXA
+                </div>
+
+                <h3>
+                    Loading cybersecurity intelligence...
+                </h3>
+
+                <p>
+                    Fetching latest security news.
+                </p>
+
             </div>
 
         </div>
@@ -1380,69 +2030,140 @@ footer strong{
 </section>
 
 
-<!-- ALERTS -->
+<!-- =========================================================
+     ALERTS
+========================================================= -->
 
 <section id="alerts">
 
     <div class="container">
 
         <div class="section-title">
-            <h2>Live <span>Alerts</span></h2>
-            <p>Recent suspicious activity detected by AUREXA.</p>
+
+            <h2>
+                Live <span>Alerts</span>
+            </h2>
+
+            <p>
+                Recent suspicious activity detected by AUREXA.
+            </p>
+
         </div>
 
-        <div class="alerts-grid" id="alertsGrid"></div>
+
+        <div
+            class="alerts-grid"
+            id="alertsGrid"
+        ></div>
 
     </div>
 
 </section>
 
 
-<!-- REPORT FRAUD -->
+<!-- =========================================================
+     REPORT FRAUD
+========================================================= -->
 
 <section id="report">
 
     <div class="container">
 
         <div class="section-title">
-            <h2>Report <span>Fraud</span></h2>
-            <p>Submit suspicious activity for investigation.</p>
+
+            <h2>
+                Report <span>Fraud</span>
+            </h2>
+
+            <p>
+                Submit suspicious activity for investigation.
+            </p>
+
         </div>
+
 
         <div class="card report-card">
 
-            <form id="fraudForm" onsubmit="app.submitIncident(event)">
+            <form
+                id="fraudForm"
+                onsubmit="app.submitIncident(event)"
+            >
 
                 <div class="form-grid">
 
                     <div class="input-group">
-                        <label>Category</label>
 
-                        <select id="fraudCategory" class="input" required>
-                            <option value="">Select category</option>
-                            <option>UPI Fraud</option>
-                            <option>Phishing</option>
-                            <option>Fake Job Scam</option>
-                            <option>Investment Scam</option>
-                            <option>AI Voice Scam</option>
-                            <option>Deepfake Fraud</option>
-                            <option>Identity Theft</option>
-                            <option>Other</option>
+                        <label>
+                            Category
+                        </label>
+
+                        <select
+                            id="fraudCategory"
+                            class="input"
+                            required
+                        >
+
+                            <option value="">
+                                Select category
+                            </option>
+
+                            <option>
+                                UPI Fraud
+                            </option>
+
+                            <option>
+                                Phishing
+                            </option>
+
+                            <option>
+                                Fake Job Scam
+                            </option>
+
+                            <option>
+                                Investment Scam
+                            </option>
+
+                            <option>
+                                AI Voice Scam
+                            </option>
+
+                            <option>
+                                Deepfake Fraud
+                            </option>
+
+                            <option>
+                                Identity Theft
+                            </option>
+
+                            <option>
+                                Other
+                            </option>
+
                         </select>
 
                     </div>
 
+
                     <div class="input-group">
-                        <label>Contact / Reference</label>
+
+                        <label>
+                            Contact / Reference
+                        </label>
+
                         <input
                             id="fraudReference"
                             class="input"
                             placeholder="Optional"
                         >
+
                     </div>
 
+
                     <div class="input-group full">
-                        <label>Description</label>
+
+                        <label>
+                            Description
+                        </label>
 
                         <textarea
                             id="fraudDescription"
@@ -1452,10 +2173,16 @@ footer strong{
 
                     </div>
 
+
                     <div class="full">
-                        <button class="btn btn-danger" type="submit">
+
+                        <button
+                            class="btn btn-danger"
+                            type="submit"
+                        >
                             🚨 Submit Fraud Report
                         </button>
+
                     </div>
 
                 </div>
@@ -1469,53 +2196,173 @@ footer strong{
 </section>
 
 
-<!-- SECURITY CENTER -->
+<!-- =========================================================
+     SECURITY CENTER
+========================================================= -->
 
 <section id="security">
 
     <div class="container">
 
         <div class="section-title">
-            <h2>Security <span>Center</span></h2>
-            <p>Simple rules to stay protected from modern cyber scams.</p>
+
+            <h2>
+                Security <span>Center</span>
+            </h2>
+
+            <p>
+                Simple rules to stay protected.
+            </p>
+
         </div>
+
 
         <div class="security-grid">
 
             <div class="card security-card">
-                <div class="security-icon">🎣</div>
-                <h3>Phishing Protection</h3>
+
+                <div class="security-icon">
+                    🎣
+                </div>
+
+                <h3>
+                    Phishing Protection
+                </h3>
+
                 <p>
-                    Verify domains carefully. Never enter passwords,
-                    OTPs or card information through suspicious links.
+                    Verify domains carefully.
+                    Never enter passwords, OTPs or card
+                    information through suspicious links.
                 </p>
+
             </div>
 
-            <div class="card security-card">
-                <div class="security-icon">💳</div>
-                <h3>UPI Safety</h3>
-                <p>
-                    You never need to enter your UPI PIN to receive money.
-                    Verify every payment request before approving it.
-                </p>
-            </div>
 
             <div class="card security-card">
-                <div class="security-icon">💼</div>
-                <h3>Fake Job Scams</h3>
+
+                <div class="security-icon">
+                    💳
+                </div>
+
+                <h3>
+                    UPI Safety
+                </h3>
+
                 <p>
-                    Genuine employers generally don't demand money for
-                    registration, training or guaranteed job offers.
+                    You never need to enter your UPI PIN
+                    to receive money. Verify every payment request.
                 </p>
+
             </div>
 
+
             <div class="card security-card">
-                <div class="security-icon">🤖</div>
-                <h3>AI Scam Safety</h3>
+
+                <div class="security-icon">
+                    💼
+                </div>
+
+                <h3>
+                    Fake Job Scams
+                </h3>
+
                 <p>
-                    Verify urgent voice/video requests independently.
-                    AI-generated voices and videos can impersonate trusted people.
+                    Be suspicious of employers demanding money
+                    for registration, training or guaranteed jobs.
                 </p>
+
+            </div>
+
+
+            <div class="card security-card">
+
+                <div class="security-icon">
+                    🤖
+                </div>
+
+                <h3>
+                    AI Scam Safety
+                </h3>
+
+                <p>
+                    Verify urgent voice and video requests
+                    independently. AI can imitate trusted people.
+                </p>
+
+            </div>
+
+
+            <div class="card security-card">
+
+                <div class="security-icon">
+                    🎙️
+                </div>
+
+                <h3>
+                    Voice Scam Defense
+                </h3>
+
+                <p>
+                    Never trust an urgent request for money,
+                    OTP, PIN or credentials only because
+                    the caller sounds familiar.
+                </p>
+
+            </div>
+
+
+            <div class="card security-card">
+
+                <div class="security-icon">
+                    🎥
+                </div>
+
+                <h3>
+                    Deepfake Defense
+                </h3>
+
+                <p>
+                    Independently verify suspicious videos,
+                    especially emergency requests from
+                    friends, family or officials.
+                </p>
+
+            </div>
+
+
+            <div class="card security-card">
+
+                <div class="security-icon">
+                    🔐
+                </div>
+
+                <h3>
+                    Account Security
+                </h3>
+
+                <p>
+                    Use strong unique passwords and
+                    multi-factor authentication on important accounts.
+                </p>
+
+            </div>
+
+
+            <div class="card security-card">
+
+                <div class="security-icon">
+                    🚨
+                </div>
+
+                <h3>
+                    Emergency Response
+                </h3>
+
+                <p>
+                    If fraud is suspected, stop the transaction,
+                    preserve evidence and report the incident quickly.
+                </p>
+
             </div>
 
         </div>
@@ -1525,37 +2372,94 @@ footer strong{
 </section>
 
 
-<!-- SOC DASHBOARD -->
+<!-- =========================================================
+     SOC DASHBOARD
+========================================================= -->
 
-<section id="soc" style="display:none;">
+<section
+    id="soc"
+    style="display:none;"
+>
 
     <div class="container">
 
         <div class="section-title">
-            <h2>Security Operations <span>Center</span></h2>
-            <p>AUREXA incident monitoring dashboard.</p>
+
+            <h2>
+                Security Operations <span>Center</span>
+            </h2>
+
+            <p>
+                AUREXA threat monitoring dashboard.
+            </p>
+
         </div>
+
 
         <div class="soc-top">
 
             <div class="card soc-stat">
-                <span>TOTAL INCIDENTS</span>
-                <h3 id="totalIncidents">0</h3>
+
+                <span>
+                    TOTAL INCIDENTS
+                </span>
+
+                <h3 id="totalIncidents">
+                    0
+                </h3>
+
             </div>
 
-            <div class="card soc-stat">
-                <span>HIGH RISK</span>
-                <h3 id="highRiskIncidents">0</h3>
-            </div>
 
             <div class="card soc-stat">
-                <span>AI MEDIA ALERTS</span>
-                <h3 id="aiAlertsCount">0</h3>
+
+                <span>
+                    HIGH RISK
+                </span>
+
+                <h3 id="highRiskIncidents">
+                    0
+                </h3>
+
             </div>
 
+
             <div class="card soc-stat">
-                <span>RESOLVED</span>
-                <h3 id="resolvedIncidents">0</h3>
+
+                <span>
+                    AI MEDIA ALERTS
+                </span>
+
+                <h3 id="aiAlertsCount">
+                    0
+                </h3>
+
+            </div>
+
+
+            <div class="card soc-stat">
+
+                <span>
+                    VOICE SCAM ALERTS
+                </span>
+
+                <h3 id="voiceAlertsCount">
+                    0
+                </h3>
+
+            </div>
+
+
+            <div class="card soc-stat">
+
+                <span>
+                    RESOLVED
+                </span>
+
+                <h3 id="resolvedIncidents">
+                    0
+                </h3>
+
             </div>
 
         </div>
@@ -1574,12 +2478,27 @@ footer strong{
                     <table>
 
                         <thead>
+
                             <tr>
-                                <th>Category</th>
-                                <th>Description</th>
-                                <th>Status</th>
-                                <th>Action</th>
+
+                                <th>
+                                    Category
+                                </th>
+
+                                <th>
+                                    Description
+                                </th>
+
+                                <th>
+                                    Status
+                                </th>
+
+                                <th>
+                                    Action
+                                </th>
+
                             </tr>
+
                         </thead>
 
                         <tbody id="incidentTable"></tbody>
@@ -1593,17 +2512,26 @@ footer strong{
 
             <div class="card chart-card">
 
-                <h3>Threat Categories</h3>
+                <h3>
+                    Threat Categories
+                </h3>
 
-                <div class="chart" id="threatChart"></div>
+                <div
+                    class="chart"
+                    id="threatChart"
+                ></div>
 
             </div>
 
         </div>
 
+
         <br>
 
-        <button class="btn btn-outline" onclick="app.logout()">
+        <button
+            class="btn btn-outline"
+            onclick="app.logout()"
+        >
             Logout Admin
         </button>
 
@@ -1612,53 +2540,111 @@ footer strong{
 </section>
 
 
-<!-- FOOTER -->
+<!-- =========================================================
+     FOOTER
+========================================================= -->
 
 <footer>
 
     <p>
-        <strong>AUREXA CyberGuard AI</strong>
+        <strong>
+            AUREXA CyberGuard AI
+        </strong>
         — AI-powered cyber fraud protection.
     </p>
 
     <p style="margin-top:8px;">
-        Developed for cybersecurity innovation & hackathon demonstration
-        by <strong>Srikanth Paka</strong> | GNITC
+        Developed for cybersecurity innovation &
+        hackathon demonstration by
+        <strong>
+            Srikanth Paka
+        </strong>
+        | GNITC
     </p>
 
 </footer>
 
 
-<!-- LOGIN MODAL -->
+<!-- =========================================================
+     LOGIN MODAL
+========================================================= -->
 
-<div class="modal-overlay" id="loginModal">
+<div
+    class="modal-overlay"
+    id="loginModal"
+>
 
     <div class="modal card">
 
-        <button class="close" onclick="app.closeModal('loginModal')">
+        <button
+            class="close"
+            onclick="app.closeModal('loginModal')"
+        >
             ×
         </button>
 
-        <h2>Admin <span style="color:var(--cyan);">Login</span></h2>
+        <h2>
+            Admin
+            <span style="color:var(--cyan);">
+                Login
+            </span>
+        </h2>
+
 
         <div class="input-group">
-            <label>Username</label>
-            <input id="adminUser" class="input" placeholder="Username">
+
+            <label>
+                Username
+            </label>
+
+            <input
+                id="adminUser"
+                class="input"
+                placeholder="Username"
+            >
+
         </div>
+
 
         <div class="input-group">
-            <label>Password</label>
-            <input id="adminPass" class="input" type="password" placeholder="Password">
+
+            <label>
+                Password
+            </label>
+
+            <input
+                id="adminPass"
+                class="input"
+                type="password"
+                placeholder="Password"
+            >
+
         </div>
 
-        <button class="btn btn-cyan" onclick="app.login()">
+
+        <button
+            class="btn btn-cyan"
+            onclick="app.login()"
+        >
             Login
         </button>
 
-        <div class="login-error" id="loginError"></div>
 
-        <p style="margin-top:15px;color:var(--muted);font-size:11px;">
-            Hackathon demo credentials: admin / admin
+        <div
+            class="login-error"
+            id="loginError"
+        ></div>
+
+
+        <p
+            style="
+                margin-top:15px;
+                color:var(--muted);
+                font-size:11px;
+            "
+        >
+            Hackathon demo credentials:
+            admin / admin
         </p>
 
     </div>
@@ -1666,22 +2652,43 @@ footer strong{
 </div>
 
 
-<!-- INFO MODAL -->
+<!-- =========================================================
+     INFO MODAL
+========================================================= -->
 
-<div class="modal-overlay" id="infoModal">
+<div
+    class="modal-overlay"
+    id="infoModal"
+>
 
     <div class="modal card">
 
-        <button class="close" onclick="app.closeModal('infoModal')">
+        <button
+            class="close"
+            onclick="app.closeModal('infoModal')"
+        >
             ×
         </button>
 
-        <h2>AUREXA <span style="color:var(--cyan);">CyberGuard AI</span></h2>
+        <h2>
+            AUREXA
+            <span style="color:var(--cyan);">
+                CyberGuard AI
+            </span>
+        </h2>
 
-        <p style="color:var(--muted);line-height:1.7;font-size:14px;">
-            AUREXA is a cybersecurity platform concept designed to
-            identify suspicious URLs, social-engineering messages,
-            phishing indicators, AI voice scams and deepfake fraud.
+        <p
+            style="
+                color:var(--muted);
+                line-height:1.7;
+                font-size:14px;
+                margin-top:15px;
+            "
+        >
+            AUREXA is an AI-powered cybersecurity platform
+            concept designed to identify suspicious URLs,
+            social-engineering messages, phishing indicators,
+            AI voice scams and deepfake fraud.
         </p>
 
     </div>
@@ -1689,29 +2696,36 @@ footer strong{
 </div>
 
 
-<!-- TOAST -->
+<!-- =========================================================
+     TOAST
+========================================================= -->
 
-<div class="toast" id="toast"></div>
+<div
+    class="toast"
+    id="toast"
+></div>
 
 
 <script>
 
 /* ============================================================
    AUREXA CYBERGUARD AI
-   FULL HACKATHON DEMO
-   ============================================================ */
+   FULL INTEGRATED HACKATHON BUILD
+============================================================ */
 
 
 /* ============================================================
-   CONFIGURATION
-   ============================================================ */
+   CONFIG
+============================================================ */
 
 /*
    DEMO ONLY:
-   VirusTotal API key is exposed in frontend JavaScript.
+   API key is exposed in browser JavaScript.
 
-   For production:
-   Move VirusTotal requests to your backend/server.
+   Replace the value below with your VirusTotal API key.
+
+   Production:
+   Move VirusTotal calls to your backend.
 */
 
 const CONFIG = {
@@ -1726,8 +2740,8 @@ const CONFIG = {
 
 
 /* ============================================================
-   APPLICATION STATE
-   ============================================================ */
+   STATE
+============================================================ */
 
 const appState = {
 
@@ -1735,244 +2749,311 @@ const appState = {
 
     isAdmin:false,
 
-    incidents:JSON.parse(
-        localStorage.getItem("aurexa_incidents") || "[]"
-    ),
+    incidents:
+        JSON.parse(
+            localStorage.getItem(
+                "aurexa_incidents"
+            ) || "[]"
+        ),
 
-    aiAlerts:Number(
-        localStorage.getItem("aurexa_ai_alerts") || "0"
-    ),
+    aiAlerts:
+        Number(
+            localStorage.getItem(
+                "aurexa_ai_alerts"
+            ) || "0"
+        ),
 
-    charts:{}
+    voiceAlerts:
+        Number(
+            localStorage.getItem(
+                "aurexa_voice_alerts"
+            ) || "0"
+        ),
+
+    liveVoice:{
+        active:false,
+        stream:null,
+        analyser:null,
+        audioContext:null,
+        interval:null,
+        timer:null,
+        seconds:0,
+        risk:0,
+        signals:0,
+        keywords:[]
+    }
 
 };
 
 
 /* ============================================================
-   MAIN APP
-   ============================================================ */
+   APP
+============================================================ */
 
 const app = {
 
 
-    /* --------------------------------------------------------
-       INITIALIZATION
-       -------------------------------------------------------- */
+/* ============================================================
+   INIT
+============================================================ */
 
-    init(){
+init(){
 
-        this.setupNavigation();
+    this.setupNavigation();
 
-        this.renderAlerts();
+    this.renderAlerts();
 
-        this.renderDashboard();
+    this.renderDashboard();
 
-        this.loadNews();
+    this.loadNews();
 
-        this.initBackground();
+    this.initBackground();
 
-        this.initShield();
+    this.initShield();
 
-    },
+},
 
 
-    /* --------------------------------------------------------
-       NAVIGATION
-       -------------------------------------------------------- */
+/* ============================================================
+   NAVIGATION
+============================================================ */
 
-    setupNavigation(){
+setupNavigation(){
 
-        document.querySelectorAll(".nav-links button")
-            .forEach(btn => {
+    document
+        .querySelectorAll(".nav-links button")
+        .forEach(btn => {
 
-                btn.addEventListener("click",() => {
+            btn.addEventListener(
+                "click",
+                () => {
 
                     document
                         .getElementById("navLinks")
-                        .classList.remove("mobile-open");
+                        .classList
+                        .remove("mobile-open");
 
-                });
+                }
+            );
 
-            });
+        });
 
-    },
+},
 
 
-    navigate(id){
+navigate(id){
 
-        const element = document.getElementById(id);
+    const el =
+        document.getElementById(id);
 
-        if(element){
+    if(el){
 
-            element.scrollIntoView({
-                behavior:"smooth"
-            });
+        el.scrollIntoView({
+            behavior:"smooth"
+        });
+
+    }
+
+},
+
+
+toggleMobile(){
+
+    document
+        .getElementById("navLinks")
+        .classList
+        .toggle("mobile-open");
+
+},
+
+
+/* ============================================================
+   SCANNER
+============================================================ */
+
+setScannerTab(type){
+
+    appState.scannerType =
+        type;
+
+
+    document
+        .querySelectorAll(".tab")
+        .forEach(tab => {
+
+            tab.classList.toggle(
+                "active",
+                tab.dataset.type === type
+            );
+
+        });
+
+
+    document.getElementById(
+        "urlInputBox"
+    ).style.display =
+        type === "url"
+        ? "block"
+        : "none";
+
+
+    document.getElementById(
+        "messageInputBox"
+    ).style.display =
+        type === "message"
+        ? "block"
+        : "none";
+
+
+    document.getElementById(
+        "emailInputBox"
+    ).style.display =
+        type === "email"
+        ? "block"
+        : "none";
+
+
+    document.getElementById(
+        "scanResult"
+    ).innerHTML = `
+
+        <div class="empty-state">
+
+            <div class="empty-icon">
+                🔐
+            </div>
+
+            <h3>
+                Ready to Scan
+            </h3>
+
+            <p>
+                Submit a ${type}
+                to generate a risk assessment.
+            </p>
+
+        </div>
+
+    `;
+
+},
+
+
+/* ============================================================
+   ANALYZE
+============================================================ */
+
+async analyze(type){
+
+    const result =
+        document.getElementById(
+            "scanResult"
+        );
+
+
+    if(type === "url"){
+
+        const url =
+            document.getElementById(
+                "urlInput"
+            ).value.trim();
+
+
+        if(!url){
+
+            this.toast(
+                "Enter a URL first."
+            );
+
+            return;
 
         }
 
-    },
 
-
-    toggleMobile(){
-
-        document
-            .getElementById("navLinks")
-            .classList.toggle("mobile-open");
-
-    },
-
-
-    /* --------------------------------------------------------
-       SCANNER TABS
-       -------------------------------------------------------- */
-
-    setScannerTab(type){
-
-        this.scannerType = type;
-
-        document
-            .querySelectorAll(".tab")
-            .forEach(tab => {
-
-                tab.classList.toggle(
-                    "active",
-                    tab.dataset.type === type
-                );
-
-            });
-
-
-        document.getElementById("urlInputBox").style.display =
-            type === "url" ? "block" : "none";
-
-        document.getElementById("messageInputBox").style.display =
-            type === "message" ? "block" : "none";
-
-        document.getElementById("emailInputBox").style.display =
-            type === "email" ? "block" : "none";
-
-
-        document.getElementById("scanResult").innerHTML = `
+        result.innerHTML = `
 
             <div class="empty-state">
 
-                <div class="empty-icon">🔐</div>
+                <div class="empty-icon">
+                    ⏳
+                </div>
 
-                <h3>Ready to Scan</h3>
+                <h3>
+                    Scanning URL...
+                </h3>
 
                 <p>
-                    Submit a ${type} to generate
-                    a security risk assessment.
+                    Checking VirusTotal threat intelligence.
                 </p>
 
             </div>
 
         `;
 
-    },
+
+        document
+            .getElementById("vtStatus")
+            .classList
+            .add("show");
 
 
-    /* --------------------------------------------------------
-       MAIN ANALYZER
-       -------------------------------------------------------- */
-
-    async analyze(type){
-
-        const result =
-            document.getElementById("scanResult");
+        document.getElementById(
+            "vtMessage"
+        ).textContent =
+            "Connecting to VirusTotal...";
 
 
-        if(type === "url"){
-
-            const url =
-                document.getElementById("urlInput").value.trim();
-
-
-            if(!url){
-
-                this.toast("Enter a URL first.");
-
-                return;
-
-            }
+        document.getElementById(
+            "vtGrid"
+        ).innerHTML = "";
 
 
-            result.innerHTML = `
+        try{
 
-                <div class="empty-state">
+            await this.analyzeVirusTotalURL(
+                url
+            );
 
-                    <div class="empty-icon">⏳</div>
+        }catch(error){
 
-                    <h3>Scanning URL...</h3>
-
-                    <p>
-                        Checking VirusTotal threat intelligence.
-                    </p>
-
-                </div>
-
-            `;
+            console.error(error);
 
 
-            document
-                .getElementById("vtStatus")
-                .classList.add("show");
+            const fallback =
+                this.localURLFallback(url);
 
 
-            document.getElementById("vtMessage").textContent =
-                "Connecting to VirusTotal...";
+            this.showAnalysis(
+                fallback,
+                "Local URL heuristic analysis"
+            );
 
 
-            document.getElementById("vtGrid").innerHTML = "";
-
-
-            try{
-
-                await this.analyzeVirusTotalURL(url);
-
-            }catch(error){
-
-                console.error(error);
-
-                this.showAnalysis(
-                    this.localURLFallback(url),
-                    "VirusTotal unavailable — local heuristic analysis"
-                );
-
-                document.getElementById("vtMessage").textContent =
-                    "VirusTotal request failed. Local analysis used.";
-
-            }
-
-            return;
+            document.getElementById(
+                "vtMessage"
+            ).textContent =
+                "VirusTotal unavailable. Local analysis used.";
 
         }
 
 
-        if(type === "message"){
+        return;
 
-            const text =
-                document.getElementById("messageInput")
-                    .value
-                    .trim();
+    }
 
 
-            if(!text){
+    if(type === "message"){
 
-                this.toast("Enter a message first.");
-
-                return;
-
-            }
-
-
-            const data =
-                this.runLocalAnalysis("message",text);
+        const text =
+            document.getElementById(
+                "messageInput"
+            ).value.trim();
 
 
-            this.showAnalysis(
-                data,
-                "Local AI heuristic analysis"
+        if(!text){
+
+            this.toast(
+                "Enter a message first."
             );
 
             return;
@@ -1980,217 +3061,118 @@ const app = {
         }
 
 
-        if(type === "email"){
-
-            const text =
-                document.getElementById("emailInput")
-                    .value
-                    .trim();
-
-
-            if(!text){
-
-                this.toast("Enter email content first.");
-
-                return;
-
-            }
-
-
-            const data =
-                this.runLocalAnalysis("email",text);
-
-
-            this.showAnalysis(
-                data,
-                "Local AI heuristic analysis"
-            );
-
-        }
-
-    },
-
-
-    /* ========================================================
-       VIRUSTOTAL URL ANALYSIS
-       ======================================================== */
-
-    async analyzeVirusTotalURL(url){
-
-        if(
-            !CONFIG.VIRUSTOTAL_API_KEY ||
-            CONFIG.VIRUSTOTAL_API_KEY ===
-            "PASTE_YOUR_VIRUSTOTAL_KEY_HERE"
-        ){
-
-            throw new Error(
-                "VirusTotal API key not configured"
-            );
-
-        }
-
-
-        document.getElementById("vtMessage").textContent =
-            "Checking existing VirusTotal intelligence...";
-
-
-        /*
-           VirusTotal URL identifier:
-           URL-safe Base64 without "=" padding.
-        */
-
-        const urlId =
-            btoa(url)
-                .replace(/\+/g,"-")
-                .replace(/\//g,"_")
-                .replace(/=+$/,"");
-
-
-        let response =
-            await fetch(
-                `${CONFIG.VIRUSTOTAL_API}/urls/${urlId}`,
-                {
-                    method:"GET",
-
-                    headers:{
-                        "x-apikey":
-                            CONFIG.VIRUSTOTAL_API_KEY
-                    }
-                }
-            );
-
-
-        /*
-           If URL isn't already known,
-           submit it to VirusTotal.
-        */
-
-        if(!response.ok){
-
-            if(response.status === 404){
-
-                document.getElementById("vtMessage").textContent =
-                    "URL not found. Submitting URL to VirusTotal...";
-
-
-                const analysisId =
-                    await this.submitVirusTotalURL(url);
-
-
-                if(analysisId){
-
-                    await this.pollVirusTotal(analysisId);
-
-                }
-
-
-                response =
-                    await fetch(
-                        `${CONFIG.VIRUSTOTAL_API}/urls/${urlId}`,
-                        {
-                            method:"GET",
-
-                            headers:{
-                                "x-apikey":
-                                    CONFIG.VIRUSTOTAL_API_KEY
-                            }
-                        }
-                    );
-
-            }
-
-        }
-
-
-        if(!response.ok){
-
-            throw new Error(
-                "VirusTotal lookup failed: HTTP " +
-                response.status
-            );
-
-        }
-
-
-        const data =
-            await response.json();
-
-
-        this.displayVirusTotalResult(
-            data,
-            url
+        this.showAnalysis(
+            this.runLocalAnalysis(
+                "message",
+                text
+            ),
+            "AUREXA local analysis"
         );
 
-    },
+
+        return;
+
+    }
 
 
-    /* ========================================================
-       SUBMIT URL TO VIRUSTOTAL
-       ======================================================== */
+    if(type === "email"){
 
-    async submitVirusTotalURL(url){
-
-        const body =
-            new URLSearchParams();
-
-        body.append("url",url);
+        const text =
+            document.getElementById(
+                "emailInput"
+            ).value.trim();
 
 
-        const response =
-            await fetch(
-                `${CONFIG.VIRUSTOTAL_API}/urls`,
-                {
-                    method:"POST",
+        if(!text){
 
-                    headers:{
-                        "x-apikey":
-                            CONFIG.VIRUSTOTAL_API_KEY,
-
-                        "Content-Type":
-                            "application/x-www-form-urlencoded"
-                    },
-
-                    body
-                }
+            this.toast(
+                "Enter email content first."
             );
 
-
-        if(!response.ok){
-
-            throw new Error(
-                "VirusTotal submission failed: HTTP " +
-                response.status
-            );
+            return;
 
         }
 
 
-        const data =
-            await response.json();
+        this.showAnalysis(
+            this.runLocalAnalysis(
+                "email",
+                text
+            ),
+            "AUREXA local analysis"
+        );
+
+    }
+
+},
 
 
-        return data?.data?.id || null;
+/* ============================================================
+   VIRUSTOTAL
+============================================================ */
 
-    },
+async analyzeVirusTotalURL(url){
+
+    if(
+        !CONFIG.VIRUSTOTAL_API_KEY ||
+        CONFIG.VIRUSTOTAL_API_KEY ===
+        "PASTE_YOUR_VIRUSTOTAL_KEY_HERE"
+    ){
+
+        throw new Error(
+            "VirusTotal API key missing"
+        );
+
+    }
 
 
-    /* ========================================================
-       POLL VIRUSTOTAL ANALYSIS
-       ======================================================== */
-
-    async pollVirusTotal(id){
-
-        for(let i=0;i<8;i++){
-
-            await new Promise(
-                resolve =>
-                    setTimeout(resolve,2500)
-            );
+    const urlId =
+        btoa(url)
+        .replace(/\+/g,"-")
+        .replace(/\//g,"_")
+        .replace(/=+$/,"");
 
 
-            const response =
+    let response =
+        await fetch(
+            `${CONFIG.VIRUSTOTAL_API}/urls/${urlId}`,
+            {
+                headers:{
+                    "x-apikey":
+                        CONFIG.VIRUSTOTAL_API_KEY
+                }
+            }
+        );
+
+
+    if(!response.ok){
+
+        if(response.status === 404){
+
+            document.getElementById(
+                "vtMessage"
+            ).textContent =
+                "URL not found. Submitting to VirusTotal...";
+
+
+            const analysisId =
+                await this.submitVirusTotalURL(
+                    url
+                );
+
+
+            if(analysisId){
+
+                await this.pollVirusTotal(
+                    analysisId
+                );
+
+            }
+
+
+            response =
                 await fetch(
-                    `${CONFIG.VIRUSTOTAL_API}/analyses/${encodeURIComponent(id)}`,
+                    `${CONFIG.VIRUSTOTAL_API}/urls/${urlId}`,
                     {
                         headers:{
                             "x-apikey":
@@ -2199,955 +3181,1753 @@ const app = {
                     }
                 );
 
-
-            if(!response.ok){
-
-                return;
-
-            }
-
-
-            const data =
-                await response.json();
-
-
-            const status =
-                data?.data?.attributes?.status;
-
-
-            document.getElementById("vtMessage").textContent =
-                "VirusTotal analysis status: " +
-                (status || "processing");
-
-
-            if(status === "completed"){
-
-                return;
-
-            }
-
         }
 
-    },
+    }
 
 
-    /* ========================================================
-       DISPLAY VIRUSTOTAL RESULT
-       ======================================================== */
+    if(!response.ok){
 
-    displayVirusTotalResult(data,url){
+        throw new Error(
+            "VirusTotal HTTP " +
+            response.status
+        );
 
-        const stats =
-            data?.data?.attributes?.last_analysis_stats || {};
-
-
-        const malicious =
-            Number(stats.malicious || 0);
-
-        const suspicious =
-            Number(stats.suspicious || 0);
-
-        const harmless =
-            Number(stats.harmless || 0);
-
-        const undetected =
-            Number(stats.undetected || 0);
+    }
 
 
-        const total =
-            malicious +
-            suspicious +
-            harmless +
-            undetected;
+    const data =
+        await response.json();
 
 
-        let score = 0;
+    this.displayVirusTotalResult(
+        data,
+        url
+    );
+
+},
 
 
-        if(total > 0){
+async submitVirusTotalURL(url){
 
-            score =
-                Math.round(
-                    (
-                        malicious * 100 +
-                        suspicious * 55
-                    ) / total
-                );
+    const body =
+        new URLSearchParams();
 
-        }
 
+    body.append(
+        "url",
+        url
+    );
+
+
+    const response =
+        await fetch(
+            `${CONFIG.VIRUSTOTAL_API}/urls`,
+            {
+                method:"POST",
+
+                headers:{
+                    "x-apikey":
+                        CONFIG.VIRUSTOTAL_API_KEY,
+
+                    "Content-Type":
+                        "application/x-www-form-urlencoded"
+                },
+
+                body
+            }
+        );
+
+
+    if(!response.ok){
+
+        throw new Error(
+            "VirusTotal submit failed"
+        );
+
+    }
+
+
+    const data =
+        await response.json();
+
+
+    return data?.data?.id || null;
+
+},
+
+
+async pollVirusTotal(id){
+
+    for(
+        let i=0;
+        i<8;
+        i++
+    ){
+
+        await new Promise(
+            resolve =>
+                setTimeout(
+                    resolve,
+                    2500
+                )
+        );
+
+
+        const response =
+            await fetch(
+                `${CONFIG.VIRUSTOTAL_API}/analyses/${encodeURIComponent(id)}`,
+                {
+                    headers:{
+                        "x-apikey":
+                            CONFIG.VIRUSTOTAL_API_KEY
+                    }
+                }
+            );
+
+
+        if(!response.ok)
+            return;
+
+
+        const data =
+            await response.json();
+
+
+        const status =
+            data?.data?.attributes?.status;
+
+
+        document.getElementById(
+            "vtMessage"
+        ).textContent =
+            "VirusTotal status: " +
+            (status || "processing");
+
+
+        if(status === "completed")
+            return;
+
+    }
+
+},
+
+
+displayVirusTotalResult(data,url){
+
+    const stats =
+        data?.data?.attributes
+            ?.last_analysis_stats || {};
+
+
+    const malicious =
+        Number(stats.malicious || 0);
+
+    const suspicious =
+        Number(stats.suspicious || 0);
+
+    const harmless =
+        Number(stats.harmless || 0);
+
+    const undetected =
+        Number(stats.undetected || 0);
+
+
+    const total =
+        malicious +
+        suspicious +
+        harmless +
+        undetected;
+
+
+    let score = 0;
+
+
+    if(total){
 
         score =
-            Math.max(
-                0,
-                Math.min(99,score)
+            Math.round(
+                (
+                    malicious * 100 +
+                    suspicious * 55
+                ) / total
+            );
+
+    }
+
+
+    score =
+        Math.min(
+            99,
+            Math.max(0,score)
+        );
+
+
+    let title =
+        "Low Risk";
+
+
+    if(score >= 70){
+
+        title =
+            "High Risk";
+
+    }else if(score >= 35){
+
+        title =
+            "Suspicious";
+
+    }
+
+
+    const indicators = [];
+
+
+    if(malicious){
+
+        indicators.push(
+            `🚨 ${malicious} engines flagged this URL as malicious.`
+        );
+
+    }
+
+
+    if(suspicious){
+
+        indicators.push(
+            `⚠️ ${suspicious} engines marked this URL suspicious.`
+        );
+
+    }
+
+
+    if(harmless){
+
+        indicators.push(
+            `✅ ${harmless} engines found no threat.`
+        );
+
+    }
+
+
+    if(
+        !malicious &&
+        !suspicious
+    ){
+
+        indicators.push(
+            "No malicious or suspicious detections returned."
+        );
+
+    }
+
+
+    this.showAnalysis(
+        {
+            score,
+            title,
+            description:
+                "VirusTotal multi-engine threat intelligence result.",
+            indicators
+        },
+        "VirusTotal"
+    );
+
+
+    document.getElementById(
+        "vtStatus"
+    ).classList.add("show");
+
+
+    document.getElementById(
+        "vtMessage"
+    ).textContent =
+        "Analyzed: " + url;
+
+
+    document.getElementById(
+        "vtGrid"
+    ).innerHTML = `
+
+        <div class="vt-item">
+            <b>${malicious}</b>
+            <span>Malicious</span>
+        </div>
+
+        <div class="vt-item">
+            <b>${suspicious}</b>
+            <span>Suspicious</span>
+        </div>
+
+        <div class="vt-item">
+            <b>${harmless}</b>
+            <span>Harmless</span>
+        </div>
+
+        <div class="vt-item">
+            <b>${undetected}</b>
+            <span>Undetected</span>
+        </div>
+
+    `;
+
+},
+
+
+/* ============================================================
+   URL FALLBACK
+============================================================ */
+
+localURLFallback(url){
+
+    let score = 0;
+
+    const indicators = [];
+
+
+    try{
+
+        const parsed =
+            new URL(
+                /^https?:\/\//i.test(url)
+                ? url
+                : "http://" + url
             );
 
 
-        let title =
-            "Low Risk";
+        if(parsed.protocol !== "https:"){
 
-
-        if(score >= 70){
-
-            title = "High Risk";
-
-        }else if(score >= 35){
-
-            title = "Suspicious";
-
-        }
-
-
-        const indicators = [];
-
-
-        if(malicious > 0){
+            score += 40;
 
             indicators.push(
-                `🚨 ${malicious} security engines flagged this URL as malicious.`
-            );
-
-        }
-
-
-        if(suspicious > 0){
-
-            indicators.push(
-                `⚠️ ${suspicious} engines marked this URL suspicious.`
-            );
-
-        }
-
-
-        if(harmless > 0){
-
-            indicators.push(
-                `✅ ${harmless} engines found no threat.`
+                "⚠️ Website is not using HTTPS."
             );
 
         }
 
 
         if(
-            malicious === 0 &&
-            suspicious === 0
+            /^[0-9.]+$/.test(
+                parsed.hostname
+            )
         ){
 
+            score += 60;
+
             indicators.push(
-                "No malicious/suspicious detections were returned."
+                "🚨 URL uses a raw IP address."
             );
 
         }
 
 
-        this.showAnalysis(
-            {
-                score,
-                title,
-                description:
-                    "VirusTotal multi-engine threat intelligence result.",
-                indicators
-            },
-            "VirusTotal"
+        if(
+            /login|verify|secure|update|auth/i
+                .test(url)
+        ){
+
+            score += 30;
+
+            indicators.push(
+                "⚠️ Phishing-related keyword detected."
+            );
+
+        }
+
+
+        if(
+            parsed.hostname.split(".").length > 4
+        ){
+
+            score += 30;
+
+            indicators.push(
+                "⚠️ Unusually deep subdomain structure."
+            );
+
+        }
+
+    }catch(e){
+
+        score = 90;
+
+        indicators.push(
+            "🚨 Invalid or suspicious URL format."
+        );
+
+    }
+
+
+    score =
+        Math.min(
+            99,
+            score
         );
 
 
-        document.getElementById("vtStatus")
-            .classList.add("show");
+    if(score === 0)
+        score = 8;
 
 
-        document.getElementById("vtMessage").textContent =
-            `Analyzed: ${url}`;
+    let title =
+        "Low Risk";
 
 
-        document.getElementById("vtGrid").innerHTML = `
+    if(score >= 70)
+        title = "High Risk";
 
-            <div class="vt-item">
-                <b>${malicious}</b>
-                <span>Malicious</span>
-            </div>
-
-            <div class="vt-item">
-                <b>${suspicious}</b>
-                <span>Suspicious</span>
-            </div>
-
-            <div class="vt-item">
-                <b>${harmless}</b>
-                <span>Harmless</span>
-            </div>
-
-            <div class="vt-item">
-                <b>${undetected}</b>
-                <span>Undetected</span>
-            </div>
-
-        `;
-
-    },
+    else if(score >= 35)
+        title = "Suspicious";
 
 
-    /* ========================================================
-       LOCAL URL FALLBACK
-       ======================================================== */
+    if(!indicators.length){
 
-    localURLFallback(url){
+        indicators.push(
+            "No obvious local phishing indicators detected."
+        );
 
-        let score = 0;
-
-        const indicators = [];
+    }
 
 
-        try{
+    return {
 
-            const parsed =
-                new URL(
-                    /^https?:\/\//i.test(url)
-                    ? url
-                    : "http://" + url
-                );
+        score,
+        title,
 
+        description:
+            "Local rule-based URL analysis.",
 
-            if(parsed.protocol !== "https:"){
+        indicators
 
-                score += 40;
+    };
 
-                indicators.push(
-                    "⚠️ Website is not using HTTPS."
-                );
-
-            }
+},
 
 
-            if(
-                /^[0-9.]+$/.test(
-                    parsed.hostname
-                )
-            ){
+/* ============================================================
+   MESSAGE / EMAIL
+============================================================ */
 
-                score += 60;
+runLocalAnalysis(type,text){
 
-                indicators.push(
-                    "🚨 URL uses a raw IP address."
-                );
+    let score = 0;
 
-            }
+    const indicators = [];
 
 
-            if(
-                /login|verify|secure|update|auth/i
-                    .test(url)
-            ){
+    const rules = [
 
-                score += 30;
+        {
+            regex:
+                /urgent|immediate|suspend|blocked|expire/i,
 
-                indicators.push(
-                    "⚠️ Contains common phishing-related keywords."
-                );
+            points:35,
 
-            }
+            message:
+                "Urgency or account-threat language detected."
+        },
+
+        {
+            regex:
+                /otp|password|pin|cvv/i,
+
+            points:50,
+
+            message:
+                "Sensitive authentication information detected."
+        },
+
+        {
+            regex:
+                /win|lottery|prize|reward|cashback/i,
+
+            points:35,
+
+            message:
+                "Possible reward/prize scam language detected."
+        },
+
+        {
+            regex:
+                /apk|download|install/i,
+
+            points:50,
+
+            message:
+                "Potentially dangerous download instruction detected."
+        },
+
+        {
+            regex:
+                /task|youtube|like|subscribe|commission/i,
+
+            points:50,
+
+            message:
+                "Possible task/job scam pattern detected."
+        }
+
+    ];
 
 
-            if(
-                parsed.hostname.split(".").length > 4
-            ){
+    rules.forEach(rule => {
 
-                score += 30;
+        if(rule.regex.test(text)){
 
-                indicators.push(
-                    "⚠️ Unusually deep subdomain structure."
-                );
-
-            }
-
-        }catch(e){
-
-            score = 90;
+            score +=
+                rule.points;
 
             indicators.push(
-                "🚨 Invalid or suspicious URL format."
+                "⚠️ " +
+                rule.message
             );
 
         }
 
+    });
 
-        score =
-            Math.min(99,score);
 
+    score =
+        Math.min(
+            99,
+            score
+        );
 
-        if(score === 0){
 
-            score = 8;
+    if(score === 0)
+        score = 8;
 
-        }
 
+    let title =
+        "Low Risk";
 
-        let title = "Low Risk";
 
-        if(score >= 70){
+    if(score >= 70)
+        title = "High Risk";
 
-            title = "High Risk";
+    else if(score >= 35)
+        title = "Suspicious";
 
-        }else if(score >= 35){
 
-            title = "Suspicious";
+    if(!indicators.length){
 
-        }
+        indicators.push(
+            "No major social-engineering indicators detected."
+        );
 
+    }
 
-        if(indicators.length === 0){
 
-            indicators.push(
-                "No obvious local phishing indicators detected."
-            );
+    return {
 
-        }
+        score,
+        title,
 
+        description:
+            type === "email"
+            ? "Email content heuristic analysis."
+            : "SMS / WhatsApp social-engineering analysis.",
 
-        return {
+        indicators
 
-            score,
-            title,
+    };
 
-            description:
-                "Local rule-based URL analysis.",
+},
 
-            indicators
 
-        };
+/* ============================================================
+   SHOW ANALYSIS
+============================================================ */
 
-    },
+showAnalysis(data,source){
 
+    const result =
+        document.getElementById(
+            "scanResult"
+        );
 
-    /* ========================================================
-       LOCAL MESSAGE / EMAIL ANALYSIS
-       ======================================================== */
 
-    runLocalAnalysis(type,text){
+    let riskColor =
+        "var(--green)";
 
-        let score = 0;
 
-        const indicators = [];
+    if(data.score >= 70)
+        riskColor = "var(--red)";
 
+    else if(data.score >= 35)
+        riskColor = "var(--yellow)";
 
-        const rules = [
 
-            {
-                regex:/urgent|immediate|suspend|blocked|expire/i,
-                points:35,
-                message:
-                    "Urgency or account-threat language detected."
-            },
+    result.innerHTML = `
 
-            {
-                regex:/otp|password|pin|cvv/i,
-                points:50,
-                message:
-                    "Requests or mentions sensitive authentication information."
-            },
+        <div>
 
-            {
-                regex:/win|lottery|prize|reward|cashback/i,
-                points:35,
-                message:
-                    "Possible reward/prize scam language detected."
-            },
+            <div
+                class="risk-circle"
+                style="
+                    border-color:${riskColor};
+                    box-shadow:0 0 30px ${riskColor}33;
+                "
+            >
 
-            {
-                regex:/apk|download|install/i,
-                points:50,
-                message:
-                    "Potentially dangerous download/install instruction detected."
-            },
+                <div>
 
-            {
-                regex:/task|youtube|like|subscribe|commission/i,
-                points:50,
-                message:
-                    "Possible task/job scam pattern detected."
-            }
+                    <div
+                        class="risk-number"
+                        style="color:${riskColor};"
+                    >
+                        ${data.score}
+                    </div>
 
-        ];
-
-
-        rules.forEach(rule => {
-
-            if(rule.regex.test(text)){
-
-                score += rule.points;
-
-                indicators.push(
-                    "⚠️ " + rule.message
-                );
-
-            }
-
-        });
-
-
-        score =
-            Math.min(99,score);
-
-
-        if(score === 0){
-
-            score = 8;
-
-        }
-
-
-        let title = "Low Risk";
-
-        if(score >= 70){
-
-            title = "High Risk";
-
-        }else if(score >= 35){
-
-            title = "Suspicious";
-
-        }
-
-
-        if(indicators.length === 0){
-
-            indicators.push(
-                "No major social-engineering indicators detected."
-            );
-
-        }
-
-
-        return {
-
-            score,
-            title,
-
-            description:
-                type === "email"
-                ? "Email content heuristic analysis."
-                : "SMS / WhatsApp social-engineering analysis.",
-
-            indicators
-
-        };
-
-    },
-
-
-    /* ========================================================
-       SHOW ANALYSIS
-       ======================================================== */
-
-    showAnalysis(data,source){
-
-        const result =
-            document.getElementById("scanResult");
-
-
-        let riskColor =
-            "var(--green)";
-
-
-        if(data.score >= 70){
-
-            riskColor =
-                "var(--red)";
-
-        }else if(data.score >= 35){
-
-            riskColor =
-                "var(--yellow)";
-
-        }
-
-
-        result.innerHTML = `
-
-            <div>
-
-                <div
-                    class="risk-circle"
-                    style="
-                        border-color:${riskColor};
-                        box-shadow:0 0 30px ${riskColor}33;
-                    "
-                >
-
-                    <div>
-
-                        <div
-                            class="risk-number"
-                            style="color:${riskColor};"
-                        >
-                            ${data.score}
-                        </div>
-
-                        <div class="risk-label">
-                            RISK SCORE
-                        </div>
-
+                    <div class="risk-label">
+                        RISK SCORE
                     </div>
 
                 </div>
 
-
-                <h3 class="result-title">
-                    ${this.escapeHTML(data.title)}
-                </h3>
+            </div>
 
 
-                <p class="result-desc">
-                    ${this.escapeHTML(data.description)}
-                    <br>
-                    <small>${this.escapeHTML(source)}</small>
-                </p>
+            <h3 class="result-title">
+                ${this.escapeHTML(data.title)}
+            </h3>
 
 
-                <div class="indicators">
+            <p class="result-desc">
 
-                    ${data.indicators.map(item => `
+                ${this.escapeHTML(
+                    data.description
+                )}
+
+                <br>
+
+                <small>
+                    ${this.escapeHTML(source)}
+                </small>
+
+            </p>
+
+
+            <div class="indicators">
+
+                ${data.indicators.map(
+                    item => `
+
                         <div class="indicator">
                             ${this.escapeHTML(item)}
                         </div>
-                    `).join("")}
 
-                </div>
+                    `
+                ).join("")}
 
             </div>
 
-        `;
+        </div>
+
+    `;
 
 
-        if(data.score >= 70){
+    if(data.score >= 70){
 
-            this.addAlert(
-                "High Risk Threat",
-                `${source} detected a high-risk activity.`,
-                "🚨"
+        this.addAlert(
+            "High Risk Threat",
+            `${source} detected a high-risk activity.`,
+            "🚨"
+        );
+
+    }
+
+},
+
+
+/* ============================================================
+   REAL-TIME VOICE MONITORING
+============================================================ */
+
+async toggleVoiceMonitoring(){
+
+    if(
+        appState.liveVoice.active
+    ){
+
+        this.stopVoiceMonitoring();
+
+    }else{
+
+        await this.startVoiceMonitoring();
+
+    }
+
+},
+
+
+/* ------------------------------------------------------------
+   START
+------------------------------------------------------------ */
+
+async startVoiceMonitoring(){
+
+    if(
+        !navigator.mediaDevices ||
+        !navigator.mediaDevices.getUserMedia
+    ){
+
+        this.toast(
+            "Microphone access is not supported in this browser."
+        );
+
+        return;
+
+    }
+
+
+    try{
+
+        const stream =
+            await navigator.mediaDevices
+                .getUserMedia({
+                    audio:true
+                });
+
+
+        appState.liveVoice.stream =
+            stream;
+
+
+        const AudioContext =
+            window.AudioContext ||
+            window.webkitAudioContext;
+
+
+        if(!AudioContext){
+
+            throw new Error(
+                "AudioContext unsupported"
             );
 
         }
 
-    },
+
+        const audioContext =
+            new AudioContext();
 
 
-    /* ========================================================
-       AI VOICE
-       ======================================================== */
-
-    voiceSelected(input){
-
-        const file =
-            input.files[0];
+        const analyser =
+            audioContext.createAnalyser();
 
 
-        document.getElementById("voiceName")
-            .textContent =
-            file
-            ? file.name
-            : "No file selected";
-
-    },
+        analyser.fftSize =
+            2048;
 
 
-    analyzeVoice(){
-
-        const input =
-            document.getElementById("voiceFile");
-
-
-        if(!input.files.length){
-
-            this.toast("Select a voice file first.");
-
-            return;
-
-        }
-
-
-        const result =
-            document.getElementById("voiceResult");
-
-
-        result.style.display = "block";
-
-
-        const score =
-            Math.floor(
-                38 + Math.random() * 58
+        const source =
+            audioContext.createMediaStreamSource(
+                stream
             );
 
 
-        document.getElementById("voiceBar")
-            .style.width =
-            score + "%";
-
-
-        document.getElementById("voiceScoreText")
-            .innerHTML = `
-
-                <span style="
-                    color:${score >= 70
-                        ? "var(--red)"
-                        : score >= 45
-                        ? "var(--yellow)"
-                        : "var(--green)"
-                    };
-                    font-weight:700;
-                ">
-                    ${score}% AI Voice Risk
-                </span>
-
-            `;
-
-
-        const indicators = [
-
-            "Voice spectral pattern analyzed.",
-
-            "Synthetic speech characteristics checked.",
-
-            "Prosody and consistency indicators evaluated.",
-
-            score >= 70
-            ? "⚠️ Strong synthetic voice indicators detected."
-            : "No conclusive synthetic voice evidence in prototype analysis."
-
-        ];
-
-
-        document.getElementById("voiceIndicators")
-            .innerHTML =
-            indicators.map(
-                x =>
-                `<div class="indicator">
-                    ${this.escapeHTML(x)}
-                </div>`
-            ).join("");
-
-
-        appState.aiAlerts++;
-
-        localStorage.setItem(
-            "aurexa_ai_alerts",
-            appState.aiAlerts
+        source.connect(
+            analyser
         );
 
 
-        if(score >= 70){
-
-            this.addAlert(
-                "AI Voice Scam",
-                "Potential synthetic voice characteristics detected.",
-                "🎙️"
-            );
-
-        }
+        appState.liveVoice.audioContext =
+            audioContext;
 
 
-        this.renderDashboard();
-
-    },
-
-
-    /* ========================================================
-       DEEPFAKE
-       ======================================================== */
-
-    videoSelected(input){
-
-        const file =
-            input.files[0];
+        appState.liveVoice.analyser =
+            analyser;
 
 
-        document.getElementById("videoName")
-            .textContent =
-            file
-            ? file.name
-            : "No file selected";
-
-    },
+        appState.liveVoice.active =
+            true;
 
 
-    analyzeVideo(){
+        appState.liveVoice.seconds =
+            0;
 
-        const input =
-            document.getElementById("videoFile");
+        appState.liveVoice.risk =
+            0;
 
+        appState.liveVoice.signals =
+            0;
 
-        if(!input.files.length){
-
-            this.toast("Select an image/video first.");
-
-            return;
-
-        }
+        appState.liveVoice.keywords =
+            [];
 
 
-        const result =
-            document.getElementById("videoResult");
+        document.getElementById(
+            "liveDot"
+        ).classList.add("active");
 
 
-        result.style.display = "block";
-
-
-        const score =
-            Math.floor(
-                35 + Math.random() * 62
-            );
-
-
-        document.getElementById("videoBar")
-            .style.width =
-            score + "%";
-
-
-        document.getElementById("videoScoreText")
-            .innerHTML = `
-
-                <span style="
-                    color:${score >= 70
-                        ? "var(--red)"
-                        : score >= 45
-                        ? "var(--yellow)"
-                        : "var(--green)"
-                    };
-                    font-weight:700;
-                ">
-                    ${score}% Deepfake Risk
-                </span>
-
-            `;
-
-
-        const indicators = [
-
-            "Facial consistency indicators evaluated.",
-
-            "Frame-level manipulation patterns checked.",
-
-            "Compression/artifact indicators checked.",
-
-            score >= 70
-            ? "⚠️ Possible manipulation indicators detected."
-            : "No conclusive manipulation evidence in prototype analysis."
-
-        ];
-
-
-        document.getElementById("videoIndicators")
-            .innerHTML =
-            indicators.map(
-                x =>
-                `<div class="indicator">
-                    ${this.escapeHTML(x)}
-                </div>`
-            ).join("");
-
-
-        appState.aiAlerts++;
-
-        localStorage.setItem(
-            "aurexa_ai_alerts",
-            appState.aiAlerts
+        document.getElementById(
+            "liveVisual"
+        ).classList.add(
+            "live-monitoring"
         );
 
 
-        if(score >= 70){
-
-            this.addAlert(
-                "Deepfake Fraud",
-                "Potential manipulated media detected.",
-                "🎥"
-            );
-
-        }
+        document.getElementById(
+            "liveStatus"
+        ).textContent =
+            "Real-time microphone monitoring active";
 
 
-        this.renderDashboard();
-
-    },
-
-
-    /* ========================================================
-       FRAUD REPORT
-       ======================================================== */
-
-    submitIncident(event){
-
-        event.preventDefault();
+        document.getElementById(
+            "micText"
+        ).textContent =
+            "🎙️ Microphone active — analyzing audio signals";
 
 
-        const category =
-            document.getElementById("fraudCategory")
-                .value;
-
-        const reference =
-            document.getElementById("fraudReference")
-                .value;
-
-        const description =
-            document.getElementById("fraudDescription")
-                .value;
-
-
-        if(!category || !description){
-
-            this.toast("Please fill required fields.");
-
-            return;
-
-        }
-
-
-        const incident = {
-
-            id:
-                Date.now(),
-
-            category,
-
-            reference,
-
-            description,
-
-            status:
-                "Open",
-
-            createdAt:
-                new Date().toLocaleString()
-
-        };
-
-
-        appState.incidents.unshift(
-            incident
-        );
-
-
-        localStorage.setItem(
-            "aurexa_incidents",
-            JSON.stringify(
-                appState.incidents
-            )
-        );
-
-
-        document.getElementById("fraudForm")
-            .reset();
+        document.getElementById(
+            "voiceMonitorBtn"
+        ).textContent =
+            "Stop Live Monitoring";
 
 
         this.toast(
-            "Fraud report submitted successfully."
+            "Real-time voice defense started."
         );
 
 
-        this.renderDashboard();
+        this.startVoiceAnalysisLoop();
 
-        this.renderAlerts();
+    }catch(error){
 
-    },
-
-
-    /* ========================================================
-       DASHBOARD
-       ======================================================== */
-
-    renderDashboard(){
-
-        const incidents =
-            appState.incidents;
+        console.error(error);
 
 
-        const total =
-            incidents.length;
+        this.toast(
+            "Microphone permission required."
+        );
+
+    }
+
+},
 
 
-        const resolved =
-            incidents.filter(
-                x =>
-                    x.status === "Resolved"
-            ).length;
+/* ------------------------------------------------------------
+   STOP
+------------------------------------------------------------ */
+
+stopVoiceMonitoring(){
+
+    const state =
+        appState.liveVoice;
 
 
-        const highRisk =
-            incidents.filter(
-                x =>
-                    [
-                        "Phishing",
-                        "UPI Fraud",
-                        "AI Voice Scam",
-                        "Deepfake Fraud"
-                    ].includes(x.category)
-            ).length;
+    state.active =
+        false;
 
 
-        document.getElementById("totalIncidents")
-            .textContent =
-            total;
+    if(state.stream){
+
+        state.stream
+            .getTracks()
+            .forEach(
+                track =>
+                    track.stop()
+            );
+
+    }
 
 
-        document.getElementById("resolvedIncidents")
-            .textContent =
-            resolved;
+    if(state.audioContext){
+
+        try{
+            state.audioContext.close();
+        }catch(e){}
+
+    }
 
 
-        document.getElementById("highRiskIncidents")
-            .textContent =
-            highRisk;
+    clearInterval(
+        state.interval
+    );
+
+    clearInterval(
+        state.timer
+    );
 
 
-        document.getElementById("aiAlertsCount")
-            .textContent =
-            appState.aiAlerts;
+    document.getElementById(
+        "liveDot"
+    ).classList.remove(
+        "active"
+    );
 
 
-        this.renderTable();
-
-        this.renderCharts();
-
-    },
-
-
-    renderTable(){
-
-        const table =
-            document.getElementById("incidentTable");
+    document.getElementById(
+        "liveVisual"
+    ).classList.remove(
+        "live-monitoring"
+    );
 
 
-        if(!appState.incidents.length){
+    document.getElementById(
+        "liveStatus"
+    ).textContent =
+        "Monitoring is stopped";
 
-            table.innerHTML = `
 
-                <tr>
+    document.getElementById(
+        "micText"
+    ).textContent =
+        "Microphone inactive";
 
-                    <td colspan="4"
-                        style="text-align:center;color:var(--muted);">
 
-                        No incidents yet.
+    document.getElementById(
+        "voiceMonitorBtn"
+    ).textContent =
+        "Start Live Monitoring";
 
-                    </td>
 
-                </tr>
+    this.toast(
+        "Real-time monitoring stopped."
+    );
 
-            `;
+},
 
-            return;
+
+/* ------------------------------------------------------------
+   REAL-TIME ANALYSIS LOOP
+------------------------------------------------------------ */
+
+startVoiceAnalysisLoop(){
+
+    const state =
+        appState.liveVoice;
+
+
+    const analyser =
+        state.analyser;
+
+
+    const buffer =
+        new Uint8Array(
+            analyser.fftSize
+        );
+
+
+    state.interval =
+        setInterval(
+            () => {
+
+                if(!state.active)
+                    return;
+
+
+                analyser.getByteTimeDomainData(
+                    buffer
+                );
+
+
+                let sum = 0;
+
+
+                for(
+                    let i=0;
+                    i<buffer.length;
+                    i++
+                ){
+
+                    const value =
+                        (
+                            buffer[i] -
+                            128
+                        ) / 128;
+
+
+                    sum +=
+                        value * value;
+
+                }
+
+
+                const rms =
+                    Math.sqrt(
+                        sum /
+                        buffer.length
+                    );
+
+
+                const activity =
+                    Math.min(
+                        100,
+                        Math.round(
+                            rms * 500
+                        )
+                    );
+
+
+                /*
+                   Prototype risk engine.
+
+                   In production this layer can receive:
+                   - ASR transcript
+                   - speaker embeddings
+                   - synthetic speech model score
+                   - prosody analysis
+                   - replay detection
+                   - social engineering classifier
+                */
+
+                let risk =
+                    Math.round(
+                        activity * .35
+                    );
+
+
+                /*
+                   Randomized micro variation only
+                   keeps the demo visually live.
+                */
+
+                risk +=
+                    Math.floor(
+                        Math.random() * 8
+                    );
+
+
+                /*
+                   Slowly simulate additional
+                   behavioral signals.
+                */
+
+                if(
+                    Math.random() > .82
+                ){
+
+                    state.signals++;
+
+                    risk += 7;
+
+                }
+
+
+                risk =
+                    Math.min(
+                        99,
+                        risk
+                    );
+
+
+                state.risk =
+                    Math.round(
+                        (
+                            state.risk * .75
+                        ) +
+                        (
+                            risk * .25
+                        )
+                    );
+
+
+                document.getElementById(
+                    "voiceActivity"
+                ).textContent =
+                    activity + "%";
+
+
+                document.getElementById(
+                    "liveRiskText"
+                ).textContent =
+                    state.risk + "%";
+
+
+                document.getElementById(
+                    "liveRiskNumber"
+                ).textContent =
+                    state.risk +
+                    " / 100";
+
+
+                document.getElementById(
+                    "scamSignals"
+                ).textContent =
+                    state.signals;
+
+
+                document.getElementById(
+                    "liveRiskBar"
+                ).style.width =
+                    state.risk + "%";
+
+
+                this.updateLiveWarning(
+                    state.risk
+                );
+
+
+                this.animateWave(
+                    activity
+                );
+
+            },
+            600
+        );
+
+
+    state.timer =
+        setInterval(
+            () => {
+
+                if(!state.active)
+                    return;
+
+
+                state.seconds++;
+
+
+                const mins =
+                    String(
+                        Math.floor(
+                            state.seconds / 60
+                        )
+                    ).padStart(
+                        2,
+                        "0"
+                    );
+
+
+                const secs =
+                    String(
+                        state.seconds % 60
+                    ).padStart(
+                        2,
+                        "0"
+                    );
+
+
+                document.getElementById(
+                    "monitorTime"
+                ).textContent =
+                    `${mins}:${secs}`;
+
+            },
+            1000
+        );
+
+},
+
+
+/* ------------------------------------------------------------
+   LIVE WARNING
+------------------------------------------------------------ */
+
+updateLiveWarning(risk){
+
+    const warning =
+        document.getElementById(
+            "liveWarning"
+        );
+
+
+    const dot =
+        document.getElementById(
+            "liveDot"
+        );
+
+
+    if(risk >= 70){
+
+        warning.classList.add(
+            "show"
+        );
+
+
+        dot.classList.add(
+            "danger"
+        );
+
+
+        document.getElementById(
+            "warningText"
+        ).textContent =
+            "High-risk behavioral signals detected. Verify the caller independently and do not share OTP, PIN, password or payment information.";
+
+
+        /*
+           Create alert only occasionally.
+        */
+
+        if(
+            Math.random() > .92
+        ){
+
+            appState.voiceAlerts++;
+
+
+            localStorage.setItem(
+                "aurexa_voice_alerts",
+                appState.voiceAlerts
+            );
+
+
+            this.addAlert(
+                "Real-Time Voice Scam Warning",
+                "High-risk voice/social-engineering signals detected.",
+                "🎙️"
+            );
+
+
+            this.renderDashboard();
 
         }
 
+    }else{
 
-        table.innerHTML =
+        warning.classList.remove(
+            "show"
+        );
+
+
+        dot.classList.remove(
+            "danger"
+        );
+
+    }
+
+},
+
+
+/* ------------------------------------------------------------
+   WAVE
+------------------------------------------------------------ */
+
+animateWave(activity){
+
+    document
+        .querySelectorAll(
+            ".wave span"
+        )
+        .forEach(
+            bar => {
+
+                const h =
+                    Math.max(
+                        8,
+                        Math.round(
+                            activity * (
+                                .4 +
+                                Math.random() * .7
+                            )
+                        )
+                    );
+
+
+                bar.style.height =
+                    h + "px";
+
+            }
+        );
+
+},
+
+
+/* ============================================================
+   VOICE FILE
+============================================================ */
+
+voiceSelected(input){
+
+    const file =
+        input.files[0];
+
+
+    document.getElementById(
+        "voiceName"
+    ).textContent =
+        file
+        ? file.name
+        : "No file selected";
+
+},
+
+
+analyzeVoice(){
+
+    const input =
+        document.getElementById(
+            "voiceFile"
+        );
+
+
+    if(!input.files.length){
+
+        this.toast(
+            "Select a voice file first."
+        );
+
+        return;
+
+    }
+
+
+    const result =
+        document.getElementById(
+            "voiceResult"
+        );
+
+
+    result.style.display =
+        "block";
+
+
+    /*
+       Hackathon prototype scoring.
+
+       Production:
+       connect to an audio deepfake /
+       synthetic speech classifier.
+    */
+
+    const score =
+        Math.floor(
+            42 +
+            Math.random() * 55
+        );
+
+
+    document.getElementById(
+        "voiceBar"
+    ).style.width =
+        score + "%";
+
+
+    document.getElementById(
+        "voiceScoreText"
+    ).innerHTML = `
+
+        <span
+            style="
+                color:${
+                    score >= 70
+                    ? "var(--red)"
+                    : score >= 45
+                    ? "var(--yellow)"
+                    : "var(--green)"
+                };
+                font-weight:700;
+            "
+        >
+            ${score}% AI Voice Risk
+        </span>
+
+    `;
+
+
+    const indicators = [
+
+        "Voice spectral characteristics analyzed.",
+
+        "Speech consistency indicators evaluated.",
+
+        "Synthetic speech probability estimated.",
+
+        score >= 70
+        ? "⚠️ Strong synthetic/social-engineering indicators detected."
+        : "No conclusive synthetic voice evidence in prototype analysis."
+
+    ];
+
+
+    document.getElementById(
+        "voiceIndicators"
+    ).innerHTML =
+        indicators.map(
+            x => `
+
+                <div class="indicator">
+                    ${this.escapeHTML(x)}
+                </div>
+
+            `
+        ).join("");
+
+
+    appState.aiAlerts++;
+
+
+    localStorage.setItem(
+        "aurexa_ai_alerts",
+        appState.aiAlerts
+    );
+
+
+    if(score >= 70){
+
+        appState.voiceAlerts++;
+
+
+        localStorage.setItem(
+            "aurexa_voice_alerts",
+            appState.voiceAlerts
+        );
+
+
+        this.addAlert(
+            "AI Voice Scam",
+            "Potential synthetic voice or social-engineering characteristics detected.",
+            "🎙️"
+        );
+
+    }
+
+
+    this.renderDashboard();
+
+},
+
+
+/* ============================================================
+   DEEPFAKE FILE
+============================================================ */
+
+videoSelected(input){
+
+    const file =
+        input.files[0];
+
+
+    document.getElementById(
+        "videoName"
+    ).textContent =
+        file
+        ? file.name
+        : "No file selected";
+
+},
+
+
+analyzeVideo(){
+
+    const input =
+        document.getElementById(
+            "videoFile"
+        );
+
+
+    if(!input.files.length){
+
+        this.toast(
+            "Select an image/video first."
+        );
+
+        return;
+
+    }
+
+
+    const result =
+        document.getElementById(
+            "videoResult"
+        );
+
+
+    result.style.display =
+        "block";
+
+
+    const score =
+        Math.floor(
+            40 +
+            Math.random() * 57
+        );
+
+
+    document.getElementById(
+        "videoBar"
+    ).style.width =
+        score + "%";
+
+
+    document.getElementById(
+        "videoScoreText"
+    ).innerHTML = `
+
+        <span
+            style="
+                color:${
+                    score >= 70
+                    ? "var(--red)"
+                    : score >= 45
+                    ? "var(--yellow)"
+                    : "var(--green)"
+                };
+                font-weight:700;
+            "
+        >
+            ${score}% Deepfake Risk
+        </span>
+
+    `;
+
+
+    const indicators = [
+
+        "Frame-level consistency indicators evaluated.",
+
+        "Facial manipulation patterns checked.",
+
+        "Compression and artifact signals checked.",
+
+        score >= 70
+        ? "⚠️ Possible manipulation indicators detected."
+        : "No conclusive manipulation evidence in prototype analysis."
+
+    ];
+
+
+    document.getElementById(
+        "videoIndicators"
+    ).innerHTML =
+        indicators.map(
+            x => `
+
+                <div class="indicator">
+                    ${this.escapeHTML(x)}
+                </div>
+
+            `
+        ).join("");
+
+
+    appState.aiAlerts++;
+
+
+    localStorage.setItem(
+        "aurexa_ai_alerts",
+        appState.aiAlerts
+    );
+
+
+    if(score >= 70){
+
+        this.addAlert(
+            "Deepfake Fraud",
+            "Potential manipulated media detected.",
+            "🎥"
+        );
+
+    }
+
+
+    this.renderDashboard();
+
+},
+
+
+/* ============================================================
+   FRAUD REPORT
+============================================================ */
+
+submitIncident(event){
+
+    event.preventDefault();
+
+
+    const category =
+        document.getElementById(
+            "fraudCategory"
+        ).value;
+
+
+    const reference =
+        document.getElementById(
+            "fraudReference"
+        ).value;
+
+
+    const description =
+        document.getElementById(
+            "fraudDescription"
+        ).value;
+
+
+    if(!category || !description){
+
+        this.toast(
+            "Please fill required fields."
+        );
+
+        return;
+
+    }
+
+
+    const incident = {
+
+        id:
+            Date.now(),
+
+        category,
+
+        reference,
+
+        description,
+
+        status:
+            "Open",
+
+        createdAt:
+            new Date().toLocaleString()
+
+    };
+
+
+    appState.incidents.unshift(
+        incident
+    );
+
+
+    localStorage.setItem(
+        "aurexa_incidents",
+        JSON.stringify(
             appState.incidents
-                .slice(0,20)
-                .map(item => `
+        )
+    );
+
+
+    document.getElementById(
+        "fraudForm"
+    ).reset();
+
+
+    this.toast(
+        "Fraud report submitted successfully."
+    );
+
+
+    this.renderDashboard();
+
+    this.renderAlerts();
+
+},
+
+
+/* ============================================================
+   DASHBOARD
+============================================================ */
+
+renderDashboard(){
+
+    const incidents =
+        appState.incidents;
+
+
+    const total =
+        incidents.length;
+
+
+    const resolved =
+        incidents.filter(
+            x =>
+                x.status === "Resolved"
+        ).length;
+
+
+    const highRisk =
+        incidents.filter(
+            x =>
+                [
+                    "Phishing",
+                    "UPI Fraud",
+                    "AI Voice Scam",
+                    "Deepfake Fraud"
+                ].includes(
+                    x.category
+                )
+        ).length;
+
+
+    document.getElementById(
+        "totalIncidents"
+    ).textContent =
+        total;
+
+
+    document.getElementById(
+        "highRiskIncidents"
+    ).textContent =
+        highRisk;
+
+
+    document.getElementById(
+        "aiAlertsCount"
+    ).textContent =
+        appState.aiAlerts;
+
+
+    document.getElementById(
+        "voiceAlertsCount"
+    ).textContent =
+        appState.voiceAlerts;
+
+
+    document.getElementById(
+        "resolvedIncidents"
+    ).textContent =
+        resolved;
+
+
+    this.renderTable();
+
+    this.renderCharts();
+
+},
+
+
+/* ============================================================
+   INCIDENT TABLE
+============================================================ */
+
+renderTable(){
+
+    const table =
+        document.getElementById(
+            "incidentTable"
+        );
+
+
+    if(!appState.incidents.length){
+
+        table.innerHTML = `
+
+            <tr>
+
+                <td
+                    colspan="4"
+                    style="
+                        text-align:center;
+                        color:var(--muted);
+                    "
+                >
+                    No incidents yet.
+                </td>
+
+            </tr>
+
+        `;
+
+        return;
+
+    }
+
+
+    table.innerHTML =
+        appState.incidents
+            .slice(0,20)
+            .map(
+                item => `
 
                     <tr>
 
                         <td>
-                            ${this.escapeHTML(item.category)}
+                            ${this.escapeHTML(
+                                item.category
+                            )}
                         </td>
 
                         <td>
@@ -3160,7 +4940,9 @@ const app = {
                         <td>
 
                             <span class="status">
-                                ${this.escapeHTML(item.status)}
+                                ${this.escapeHTML(
+                                    item.status
+                                )}
                             </span>
 
                         </td>
@@ -3188,210 +4970,254 @@ const app = {
 
                     </tr>
 
-                `)
-                .join("");
+                `
+            )
+            .join("");
 
-    },
-
-
-    resolveIncident(id){
-
-        const incident =
-            appState.incidents.find(
-                x =>
-                    x.id === id
-            );
+},
 
 
-        if(incident){
+resolveIncident(id){
 
-            incident.status =
-                "Resolved";
-
-
-            localStorage.setItem(
-                "aurexa_incidents",
-                JSON.stringify(
-                    appState.incidents
-                )
-            );
+    const incident =
+        appState.incidents.find(
+            x =>
+                x.id === id
+        );
 
 
-            this.toast(
-                "Incident marked as resolved."
-            );
+    if(incident){
+
+        incident.status =
+            "Resolved";
 
 
-            this.renderDashboard();
+        localStorage.setItem(
+            "aurexa_incidents",
+            JSON.stringify(
+                appState.incidents
+            )
+        );
+
+
+        this.toast(
+            "Incident marked as resolved."
+        );
+
+
+        this.renderDashboard();
+
+    }
+
+},
+
+
+/* ============================================================
+   CHART
+============================================================ */
+
+renderCharts(){
+
+    const chart =
+        document.getElementById(
+            "threatChart"
+        );
+
+
+    const categories = {
+
+        "Phishing":0,
+        "UPI Fraud":0,
+        "Fake Job":0,
+        "Investment":0,
+        "AI Voice":0,
+        "Deepfake":0,
+        "Other":0
+
+    };
+
+
+    appState.incidents.forEach(
+        item => {
+
+            if(
+                item.category === "Phishing"
+            )
+                categories["Phishing"]++;
+
+            else if(
+                item.category === "UPI Fraud"
+            )
+                categories["UPI Fraud"]++;
+
+            else if(
+                item.category === "Fake Job Scam"
+            )
+                categories["Fake Job"]++;
+
+            else if(
+                item.category === "Investment Scam"
+            )
+                categories["Investment"]++;
+
+            else if(
+                item.category === "AI Voice Scam"
+            )
+                categories["AI Voice"]++;
+
+            else if(
+                item.category === "Deepfake Fraud"
+            )
+                categories["Deepfake"]++;
+
+            else
+                categories["Other"]++;
+
+        }
+    );
+
+
+    const values =
+        Object.values(
+            categories
+        );
+
+
+    const max =
+        Math.max(
+            1,
+            ...values
+        );
+
+
+    chart.innerHTML =
+        Object.entries(
+            categories
+        )
+        .map(
+            ([name,value]) => `
+
+                <div class="bar-wrap">
+
+                    <div
+                        class="bar"
+                        style="
+                            height:${Math.max(
+                                5,
+                                (value/max)*85
+                            )}%;
+                        "
+                        title="${name}: ${value}"
+                    ></div>
+
+                    <div class="bar-label">
+                        ${name}
+                    </div>
+
+                </div>
+
+            `
+        )
+        .join("");
+
+},
+
+
+/* ============================================================
+   ALERTS
+============================================================ */
+
+alerts:[],
+
+
+addAlert(title,message,icon){
+
+    this.alerts.unshift({
+
+        title,
+        message,
+        icon,
+        time:
+            new Date()
+                .toLocaleTimeString()
+
+    });
+
+
+    this.alerts =
+        this.alerts.slice(0,10);
+
+
+    this.renderAlerts();
+
+},
+
+
+renderAlerts(){
+
+    const container =
+        document.getElementById(
+            "alertsGrid"
+        );
+
+
+    const defaults = [
+
+        {
+            title:
+                "AUREXA Protection Active",
+
+            message:
+                "CyberGuard monitoring system is online.",
+
+            icon:"🛡️",
+
+            time:"Live"
+
+        },
+
+        {
+            title:
+                "VirusTotal Intelligence",
+
+            message:
+                "URL threat intelligence scanner is available.",
+
+            icon:"🌐",
+
+            time:"Live"
+
+        },
+
+        {
+            title:
+                "Real-Time AI Defense",
+
+            message:
+                "Voice scam and deepfake defense modules are ready.",
+
+            icon:"🤖",
+
+            time:"Live"
 
         }
 
-    },
+    ];
 
 
-    /* ========================================================
-       CHARTS
-       ======================================================== */
-
-    renderCharts(){
-
-        const chart =
-            document.getElementById("threatChart");
-
-
-        const categories = {
-
-            "Phishing":0,
-            "UPI Fraud":0,
-            "Fake Job":0,
-            "Investment":0,
-            "AI Voice":0,
-            "Deepfake":0,
-            "Other":0
-
-        };
+    const all =
+        [
+            ...this.alerts,
+            ...defaults
+        ].slice(
+            0,
+            8
+        );
 
 
-        appState.incidents
-            .forEach(item => {
-
-                if(item.category === "Phishing")
-                    categories["Phishing"]++;
-
-                else if(item.category === "UPI Fraud")
-                    categories["UPI Fraud"]++;
-
-                else if(item.category === "Fake Job Scam")
-                    categories["Fake Job"]++;
-
-                else if(item.category === "Investment Scam")
-                    categories["Investment"]++;
-
-                else if(item.category === "AI Voice Scam")
-                    categories["AI Voice"]++;
-
-                else if(item.category === "Deepfake Fraud")
-                    categories["Deepfake"]++;
-
-                else
-                    categories["Other"]++;
-
-            });
-
-
-        const values =
-            Object.values(categories);
-
-
-        const max =
-            Math.max(
-                1,
-                ...values
-            );
-
-
-        chart.innerHTML =
-            Object.entries(categories)
-                .map(
-                    ([name,value]) => `
-
-                        <div class="bar-wrap">
-
-                            <div
-                                class="bar"
-                                style="
-                                    height:${Math.max(
-                                        5,
-                                        (value/max)*85
-                                    )}%;
-                                "
-                                title="${name}: ${value}"
-                            ></div>
-
-                            <div class="bar-label">
-                                ${name}
-                            </div>
-
-                        </div>
-
-                    `
-                )
-                .join("");
-
-    },
-
-
-    /* ========================================================
-       ALERTS
-       ======================================================== */
-
-    alerts:[],
-
-
-    addAlert(title,message,icon){
-
-        this.alerts.unshift({
-
-            title,
-            message,
-            icon,
-            time:
-                new Date().toLocaleTimeString()
-
-        });
-
-
-        this.alerts =
-            this.alerts.slice(0,10);
-
-
-        this.renderAlerts();
-
-    },
-
-
-    renderAlerts(){
-
-        const container =
-            document.getElementById("alertsGrid");
-
-
-        const defaultAlerts = [
-
-            {
-                title:"AUREXA Protection Active",
-                message:
-                    "CyberGuard monitoring system is online.",
-                icon:"🛡️",
-                time:"Live"
-            },
-
-            {
-                title:"Threat Intelligence",
-                message:
-                    "VirusTotal integration available for URL analysis.",
-                icon:"🌐",
-                time:"Live"
-            },
-
-            {
-                title:"AI Defense",
-                message:
-                    "AI voice and deepfake protection module is ready.",
-                icon:"🤖",
-                time:"Live"
-            }
-
-        ];
-
-
-        const all =
-            [...this.alerts,...defaultAlerts]
-                .slice(0,8);
-
-
-        container.innerHTML =
-            all.map(alert => `
+    container.innerHTML =
+        all.map(
+            alert => `
 
                 <div class="card alert">
 
@@ -3402,11 +5228,15 @@ const app = {
                     <div style="flex:1;">
 
                         <h4>
-                            ${this.escapeHTML(alert.title)}
+                            ${this.escapeHTML(
+                                alert.title
+                            )}
                         </h4>
 
                         <p>
-                            ${this.escapeHTML(alert.message)}
+                            ${this.escapeHTML(
+                                alert.message
+                            )}
                         </p>
 
                     </div>
@@ -3417,91 +5247,94 @@ const app = {
                             font-size:10px;
                         "
                     >
-                        ${this.escapeHTML(alert.time)}
+                        ${this.escapeHTML(
+                            alert.time
+                        )}
                     </span>
 
                 </div>
 
-            `).join("");
+            `
+        ).join("");
 
-    },
-
-
-    /* ========================================================
-       CYBER NEWS
-       ======================================================== */
-
-    async loadNews(){
-
-        const grid =
-            document.getElementById("newsGrid");
+},
 
 
-        grid.innerHTML = `
+/* ============================================================
+   NEWS
+============================================================ */
 
-            <div class="card news-card">
+async loadNews(){
 
-                <div class="news-source">
-                    THE HACKER NEWS
-                </div>
+    const grid =
+        document.getElementById(
+            "newsGrid"
+        );
 
-                <h3>
-                    Loading latest cybersecurity news...
-                </h3>
 
-                <p>
-                    Connecting to cyber threat intelligence feed.
-                </p>
+    grid.innerHTML = `
 
+        <div class="card news-card">
+
+            <div class="news-source">
+                THE HACKER NEWS
             </div>
 
-        `;
+            <h3>
+                Loading latest cybersecurity news...
+            </h3>
+
+            <p>
+                Connecting to cyber threat intelligence feed.
+            </p>
+
+        </div>
+
+    `;
 
 
-        try{
+    try{
 
-            const rss =
-                encodeURIComponent(
-                    "https://thehackernews.com/feeds/posts/default"
-                );
-
-
-            const response =
-                await fetch(
-                    `https://api.rss2json.com/v1/api.json?rss_url=${rss}`
-                );
+        const rss =
+            encodeURIComponent(
+                "https://thehackernews.com/feeds/posts/default"
+            );
 
 
-            if(!response.ok){
-
-                throw new Error(
-                    "News request failed"
-                );
-
-            }
+        const response =
+            await fetch(
+                `https://api.rss2json.com/v1/api.json?rss_url=${rss}`
+            );
 
 
-            const data =
-                await response.json();
+        if(!response.ok){
+
+            throw new Error(
+                "News request failed"
+            );
+
+        }
 
 
-            const items =
-                data.items || [];
+        const data =
+            await response.json();
 
 
-            if(!items.length){
-
-                throw new Error(
-                    "No news"
-                );
-
-            }
+        const items =
+            data.items || [];
 
 
-            grid.innerHTML =
-                items
-                    .slice(0,6)
-                    .map(item => `
+        if(!items.length)
+            throw new Error(
+                "No news"
+            );
+
+
+        grid.innerHTML =
+            items
+                .slice(0,6)
+                .map(
+                    item => `
 
                         <div class="card news-card">
 
@@ -3524,7 +5357,9 @@ const app = {
                             </p>
 
                             <a
-                                href="${this.safeURL(item.link)}"
+                                href="${this.safeURL(
+                                    item.link
+                                )}"
                                 target="_blank"
                                 rel="noopener noreferrer"
                             >
@@ -3533,303 +5368,309 @@ const app = {
 
                         </div>
 
-                    `)
-                    .join("");
+                    `
+                )
+                .join("");
 
-        }catch(error){
+    }catch(error){
 
-            console.error(error);
+        grid.innerHTML = `
 
+            <div class="card news-card">
 
-            grid.innerHTML = `
-
-                <div class="card news-card">
-
-                    <div class="news-source">
-                        AUREXA
-                    </div>
-
-                    <h3>
-                        Cyber news feed unavailable
-                    </h3>
-
-                    <p>
-                        Please try refreshing the news feed.
-                    </p>
-
+                <div class="news-source">
+                    AUREXA
                 </div>
 
-            `;
+                <h3>
+                    Cyber news feed unavailable
+                </h3>
 
-        }
+                <p>
+                    Please try refreshing the news feed.
+                </p>
 
-    },
+            </div>
 
+        `;
 
-    /* Alias fixes refresh button */
+    }
 
-    fetchNews(){
-
-        return this.loadNews();
-
-    },
-
-
-    /* ========================================================
-       ADMIN LOGIN
-       ======================================================== */
-
-    toggleLogin(){
-
-        if(appState.isAdmin){
-
-            this.enableAdmin();
-
-            this.navigate("soc");
-
-            return;
-
-        }
+},
 
 
-        document
-            .getElementById("loginModal")
-            .classList.add("show");
+fetchNews(){
 
-    },
+    return this.loadNews();
 
-
-    login(){
-
-        const username =
-            document.getElementById("adminUser")
-                .value
-                .trim();
-
-        const password =
-            document.getElementById("adminPass")
-                .value;
+},
 
 
-        /*
-           Demo credentials only.
-           Production must use real authentication.
-        */
+/* ============================================================
+   ADMIN
+============================================================ */
 
-        if(
-            username === "admin" &&
-            password === "admin"
-        ){
+toggleLogin(){
 
-            appState.isAdmin = true;
+    if(appState.isAdmin){
 
-            this.closeModal("loginModal");
+        this.navigate("soc");
 
-            this.enableAdmin();
+        return;
 
-            this.toast(
-                "Admin login successful."
-            );
-
-            this.navigate("soc");
-
-        }else{
-
-            document.getElementById("loginError")
-                .textContent =
-                "Invalid username or password.";
-
-        }
-
-    },
+    }
 
 
-    enableAdmin(){
+    document
+        .getElementById("loginModal")
+        .classList
+        .add("show");
 
-        if(!appState.isAdmin){
-
-            return;
-
-        }
+},
 
 
-        document.getElementById("socNav")
-            .style.display =
+login(){
+
+    const username =
+        document.getElementById(
+            "adminUser"
+        ).value.trim();
+
+
+    const password =
+        document.getElementById(
+            "adminPass"
+        ).value;
+
+
+    if(
+        username === "admin" &&
+        password === "admin"
+    ){
+
+        appState.isAdmin =
+            true;
+
+
+        this.closeModal(
+            "loginModal"
+        );
+
+
+        document.getElementById(
+            "socNav"
+        ).style.display =
             "block";
 
 
-        document.getElementById("soc")
-            .style.display =
+        document.getElementById(
+            "soc"
+        ).style.display =
             "block";
 
 
         this.renderDashboard();
 
-    },
-
-
-    logout(){
-
-        appState.isAdmin = false;
-
-
-        document.getElementById("socNav")
-            .style.display =
-            "none";
-
-
-        document.getElementById("soc")
-            .style.display =
-            "none";
-
 
         this.toast(
-            "Admin logged out."
+            "Admin login successful."
         );
 
 
-        this.navigate("home");
+        this.navigate("soc");
 
-    },
+    }else{
 
+        document.getElementById(
+            "loginError"
+        ).textContent =
+            "Invalid username or password.";
 
-    /* ========================================================
-       MODALS
-       ======================================================== */
+    }
 
-    showInfo(){
-
-        document
-            .getElementById("infoModal")
-            .classList.add("show");
-
-    },
+},
 
 
-    closeModal(id){
+logout(){
 
-        document
-            .getElementById(id)
-            .classList.remove("show");
-
-    },
+    appState.isAdmin =
+        false;
 
 
-    /* ========================================================
-       TOAST
-       ======================================================== */
-
-    toast(message){
-
-        const toast =
-            document.getElementById("toast");
+    document.getElementById(
+        "socNav"
+    ).style.display =
+        "none";
 
 
-        toast.textContent =
-            message;
+    document.getElementById(
+        "soc"
+    ).style.display =
+        "none";
 
 
-        toast.classList.add("show");
+    this.toast(
+        "Admin logged out."
+    );
 
 
-        clearTimeout(
-            this.toastTimer
+    this.navigate("home");
+
+},
+
+
+/* ============================================================
+   MODAL
+============================================================ */
+
+showInfo(){
+
+    document
+        .getElementById("infoModal")
+        .classList
+        .add("show");
+
+},
+
+
+closeModal(id){
+
+    document
+        .getElementById(id)
+        .classList
+        .remove("show");
+
+},
+
+
+/* ============================================================
+   TOAST
+============================================================ */
+
+toast(message){
+
+    const toast =
+        document.getElementById(
+            "toast"
         );
 
 
-        this.toastTimer =
-            setTimeout(
-                () =>
-                    toast.classList.remove("show"),
-                3000
-            );
-
-    },
+    toast.textContent =
+        message;
 
 
-    /* ========================================================
-       BACKGROUND PARTICLES
-       ======================================================== */
-
-    initBackground(){
-
-        const canvas =
-            document.getElementById("particles");
+    toast.classList.add(
+        "show"
+    );
 
 
-        const ctx =
-            canvas.getContext("2d");
+    clearTimeout(
+        this.toastTimer
+    );
 
 
-        let particles = [];
+    this.toastTimer =
+        setTimeout(
+            () =>
+                toast.classList.remove(
+                    "show"
+                ),
+            3000
+        );
+
+},
 
 
-        function resize(){
+/* ============================================================
+   BACKGROUND
+============================================================ */
 
-            canvas.width =
-                window.innerWidth;
+initBackground(){
 
-            canvas.height =
-                window.innerHeight;
-
-        }
-
-
-        resize();
-
-
-        window.addEventListener(
-            "resize",
-            resize
+    const canvas =
+        document.getElementById(
+            "particles"
         );
 
 
-        const count =
-            Math.min(
-                100,
-                Math.floor(
-                    window.innerWidth / 12
-                )
-            );
+    const ctx =
+        canvas.getContext("2d");
 
 
-        for(let i=0;i<count;i++){
-
-            particles.push({
-
-                x:
-                    Math.random() *
-                    canvas.width,
-
-                y:
-                    Math.random() *
-                    canvas.height,
-
-                r:
-                    Math.random()*1.6+.4,
-
-                vx:
-                    (Math.random()-.5)*.25,
-
-                vy:
-                    (Math.random()-.5)*.25
-
-            });
-
-        }
+    let particles = [];
 
 
-        function animate(){
+    function resize(){
 
-            ctx.clearRect(
-                0,
-                0,
+        canvas.width =
+            window.innerWidth;
+
+        canvas.height =
+            window.innerHeight;
+
+    }
+
+
+    resize();
+
+
+    window.addEventListener(
+        "resize",
+        resize
+    );
+
+
+    const count =
+        Math.min(
+            100,
+            Math.floor(
+                window.innerWidth / 12
+            )
+        );
+
+
+    for(
+        let i=0;
+        i<count;
+        i++
+    ){
+
+        particles.push({
+
+            x:
+                Math.random() *
                 canvas.width,
-                canvas.height
-            );
+
+            y:
+                Math.random() *
+                canvas.height,
+
+            r:
+                Math.random()*1.6+.4,
+
+            vx:
+                (Math.random()-.5)*.25,
+
+            vy:
+                (Math.random()-.5)*.25
+
+        });
+
+    }
 
 
-            particles.forEach(p => {
+    function animate(){
+
+        ctx.clearRect(
+            0,
+            0,
+            canvas.width,
+            canvas.height
+        );
+
+
+        particles.forEach(
+            p => {
 
                 p.x += p.vx;
 
@@ -3864,99 +5705,104 @@ const app = {
 
                 ctx.fill();
 
-            });
+            }
+        );
 
+
+        for(
+            let i=0;
+            i<particles.length;
+            i++
+        ){
 
             for(
-                let i=0;
-                i<particles.length;
-                i++
+                let j=i+1;
+                j<particles.length;
+                j++
             ){
 
-                for(
-                    let j=i+1;
-                    j<particles.length;
-                    j++
-                ){
+                const a =
+                    particles[i];
 
-                    const a =
-                        particles[i];
-
-                    const b =
-                        particles[j];
+                const b =
+                    particles[j];
 
 
-                    const dx =
-                        a.x-b.x;
+                const dx =
+                    a.x-b.x;
 
-                    const dy =
-                        a.y-b.y;
-
-
-                    const distance =
-                        Math.sqrt(
-                            dx*dx+dy*dy
-                        );
+                const dy =
+                    a.y-b.y;
 
 
-                    if(distance < 100){
+                const distance =
+                    Math.sqrt(
+                        dx*dx +
+                        dy*dy
+                    );
 
-                        ctx.beginPath();
 
-                        ctx.moveTo(
-                            a.x,
-                            a.y
-                        );
+                if(distance < 100){
 
-                        ctx.lineTo(
-                            b.x,
-                            b.y
-                        );
+                    ctx.beginPath();
 
-                        ctx.strokeStyle =
-                            `rgba(
-                                0,
-                                234,
-                                255,
-                                ${.08*(1-distance/100)}
-                            )`;
+                    ctx.moveTo(
+                        a.x,
+                        a.y
+                    );
 
-                        ctx.stroke();
+                    ctx.lineTo(
+                        b.x,
+                        b.y
+                    );
 
-                    }
+                    ctx.strokeStyle =
+                        `rgba(
+                            0,
+                            234,
+                            255,
+                            ${.08*(1-distance/100)}
+                        )`;
+
+                    ctx.stroke();
 
                 }
 
             }
 
-
-            requestAnimationFrame(
-                animate
-            );
-
         }
 
 
-        animate();
+        requestAnimationFrame(
+            animate
+        );
 
-    },
-
-
-    /* ========================================================
-       SHIELD EFFECT
-       ======================================================== */
-
-    initShield(){
-
-        const shield =
-            document.querySelector(".shield");
+    }
 
 
-        if(!shield)
-            return;
+    animate();
+
+},
 
 
-        setInterval(() => {
+/* ============================================================
+   SHIELD
+============================================================ */
+
+initShield(){
+
+    const shield =
+        document.querySelector(
+            ".shield"
+        );
+
+
+    if(!shield)
+        return;
+
+
+    setInterval(
+        () => {
 
             shield.style.boxShadow =
                 `
@@ -3966,100 +5812,110 @@ const app = {
                 rgba(0,234,255,.06)
                 `;
 
-        },1800);
+        },
+        1800
+    );
 
-    },
-
-
-    /* ========================================================
-       SECURITY HELPERS
-       ======================================================== */
-
-    escapeHTML(value){
-
-        return String(value)
-            .replace(/&/g,"&amp;")
-            .replace(/</g,"&lt;")
-            .replace(/>/g,"&gt;")
-            .replace(/"/g,"&quot;")
-            .replace(/'/g,"&#039;");
-
-    },
+},
 
 
-    safeURL(url){
+/* ============================================================
+   SECURITY HELPERS
+============================================================ */
 
-        try{
+escapeHTML(value){
 
-            const parsed =
-                new URL(url);
+    return String(value)
+        .replace(/&/g,"&amp;")
+        .replace(/</g,"&lt;")
+        .replace(/>/g,"&gt;")
+        .replace(/"/g,"&quot;")
+        .replace(/'/g,"&#039;");
 
-
-            if(
-                parsed.protocol === "http:" ||
-                parsed.protocol === "https:"
-            ){
-
-                return this.escapeHTML(
-                    parsed.href
-                );
-
-            }
-
-        }catch(e){}
+},
 
 
-        return "#";
+safeURL(url){
 
-    },
+    try{
+
+        const parsed =
+            new URL(url);
 
 
-    stripHTML(html){
+        if(
+            parsed.protocol === "http:" ||
+            parsed.protocol === "https:"
+        ){
 
-        const div =
-            document.createElement("div");
+            return this.escapeHTML(
+                parsed.href
+            );
 
-        div.innerHTML =
-            html;
+        }
 
-        return div.textContent || "";
+    }catch(e){}
 
-    }
+
+    return "#";
+
+},
+
+
+stripHTML(html){
+
+    const div =
+        document.createElement(
+            "div"
+        );
+
+
+    div.innerHTML =
+        html;
+
+
+    return div.textContent || "";
+
+}
 
 };
 
 
 /* ============================================================
-   CLOSE MODALS WHEN CLICKING OUTSIDE
-   ============================================================ */
+   MODAL OUTSIDE CLICK
+============================================================ */
 
 document
-    .querySelectorAll(".modal-overlay")
-    .forEach(modal => {
+    .querySelectorAll(
+        ".modal-overlay"
+    )
+    .forEach(
+        modal => {
 
-        modal.addEventListener(
-            "click",
-            event => {
+            modal.addEventListener(
+                "click",
+                event => {
 
-                if(
-                    event.target === modal
-                ){
+                    if(
+                        event.target === modal
+                    ){
 
-                    modal.classList.remove(
-                        "show"
-                    );
+                        modal.classList.remove(
+                            "show"
+                        );
+
+                    }
 
                 }
+            );
 
-            }
-        );
-
-    });
+        }
+    );
 
 
 /* ============================================================
-   START APPLICATION
-   ============================================================ */
+   START
+============================================================ */
 
 document.addEventListener(
     "DOMContentLoaded",
